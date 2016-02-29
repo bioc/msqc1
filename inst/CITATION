@@ -1,0 +1,19 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Article",
+         title = "{Targeted proteomics coming of age 1 SRM, PRM and DIA performance evaluated from a core facility perspective}",
+         author = c(person("Tobias", "Kockann"),
+            person("Christian", "Trachsel"),
+	 	        person("Christian", "Panse"),
+		        person("Asa", "Wahlander"),
+		        person("Nathalie", "Selevsek"),
+            person("Jonas", "Grossmann"),
+            person("Witold E.", "Wolski"),
+            person("Ralph", "Schlapbach")),
+         journal="Proteomics (submitted)",
+         pages = "",
+         month = "",
+         year = 2016,
+         note = "",
+         url = "")

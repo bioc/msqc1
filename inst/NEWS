@@ -1,0 +1,18 @@
+
+
+CHANGES IN VERSION 0.99.3
+------------------------
+o added value section in man/*.Rd
+
+CHANGES IN VERSION 0.99.2
+------------------------
+o R-3.3 depends 
+
+CHANGES IN VERSION 0.99.1
+------------------------
+ o started NEWS file
+ o added MassSpectrometryData, ReproducibleResearch to biocView
+ o In the DESCRIPTION file, please removed testthat from Depends: and put it in Suggests.
+ o removed the import("testthat") line from NAMESPACE.
+ o added stats::lm in import
+ 

@@ -1,0 +1,94 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{msqc1 - a mass spec data set for targeted proteomics performance evaluated}
+-->
+
+
+```{r}
+library(msqc1)
+```
+# msqc1 - a mass spectrometer data set for targeted proteomics performance
+ 
+Here we provide a experiment data package containing all the spreedsheets used for figures and supplemental figures for the following publication.
+
+```{r}
+citation('msqc1')
+```
+
+The spreedsheets were extracted out of the [mass spectrometic meassurements](https://panoramaweb.org/labkey/search/home/search.view?q=Kockmann) by using the [skyline](https://skyline.gs.washington.edu) software version 3,1 and the following [template]() (t.b.d).
+
+## Peptide properties
+
+### Figure - reference L:H ratio verus the on-column amout
+```{r "Supplementary Figure1", echo=FALSE, fig.width=6, fig.height=6, fig.retina=3, warning=FALSE}
+plot(10 * msqc1::peptides$SIL.peptide.per.vial, msqc1::peptides$actual.LH.ratio,
+     log='xy',
+     ylab='reference L:H ratio',
+     xlab='on column amount [fmol]',
+     axes=FALSE,
+     xlim=c(0.8, 2000));
+
+axis(1, 10 * peptides$SIL.peptide.per.vial, 10 * peptides$SIL.peptide.per.vial )
+axis(2, peptides$actual.LH.ratio, peptides$actual.LH.ratio)
+text(10 * peptides$SIL.peptide.per.vial, peptides$actual.LH.ratio, peptides$Peptide.Sequence, cex=0.5 ,pos=4, srt=11)
+box()
+```
+
+The scatterplot displays the reference L:H ratio verus the on-column amout of heavy pepitde as listed in table 1. Note, x and y axis are drawn in log scale.
+
+##  Have fun with the data
+
+
+show the dilution series
+```{r}
+table(msqc1_dil$relative.amount)
+```
+
+show the peptide frequency
+```{r}
+table(msqc1_dil$Peptide.Sequence)
+```
+
+
+## Graphics
+All figures used in the publication were produced by using this package.
+
+Examples are shown below.
+
+### Figure - Sigma mix peptide level signal
+```{r "Figure1", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE}
+msqc1:::.figure1(data=msqc1_8rep, peptides=peptides)
+```
+**Sigma mix peptide level signal** - The graph displays the log2 L:H area ratios of eight technical replicates over 14 peptides from five MS platforms. The 14 panels were ordered by the on column amount of heavy peptide per vial (0.8, 4, 20, 40, 80, 200, 500, 1000 fmol). The black line indicates the theoretical L:H ratio as reported in the QC certificate by Sigma-Aldrich. In a perfect setting all data points would be located close to the black line indicating a perfect match between light heavy ratios.
+The dark grey boxes correspond to a 1-linear-fold change and the light grey boxes to a 2-fold change.
+
+### Figure - Ratio stability upon analyte dilution
+
+```{r "Figure3a", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE}
+msqc1:::.figure4(data=msqc1_dil, peptides=peptides)
+```
+
+**Ratio stability upon analyte dilution** - Each scatterplot panel displays the experimental derived log2 L:H ratios versus the relative amount. The panels are ordered by the SIL on column amount (lower left to upper right).
+Color grouping was done by instrument. The loess fit curves were added for visualizing the trend.
+The SIL value given in each panel legend is valid for the relative amount of 1.
+The horizontal black line indicates the theoretical log2 L:H ratio.
+
+### Figure - Accuracy
+
+```{r "Figure3b", echo=FALSE, fig.width=14, fig.height=4.5, fig.retina=3, warning=FALSE}
+msqc1:::.figure5(data=msqc1_dil, data_reference = msqc1_8rep)
+```
+
+**Accuracy** - The graph displays in each panel a sensitivity curves for a given relative amount.
+
+
+# HPLC QC
+
+```{r "Supplement_figure9", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE}
+msqc1:::.supplement_figure9(data=msqc1_8rep)
+```
+
+# Session information
+```{r}
+sessionInfo()
+```
