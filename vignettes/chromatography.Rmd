@@ -1,0 +1,214 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{LC Observations - Retention Time Stability}
+-->
+
+---
+title: "LC Observations - Retention Time Stability"
+author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
+date: "29 February 2016"
+output: html_document
+---
+
+```{r}
+if (!require(msqc1)){
+  ## try http:// if https:// URLs are not supported
+  source("https://bioconductor.org/biocLite.R")
+  biocLite("msqc1")
+}
+```
+
+This vignette file is thought to demonstrate the retention time stability of the `msqc1_8rep` and `msqc1_dil` data contained in the `msqc1` R package.
+
+# Problem: Retention time (rt) form different LC-MS platforms are often not comparable (duration, offset).
+
+# Solution: Normalization 
+
+- define a reference platfrom (QTRAP)
+- for each platform build a linear model (in the following we use the `stats::lm` function) and map platfrom the rt space of the corresbonding platform into reference platform rt space (by using the `stats::predict.lm` method)
+- scale the normalized rt values into [0, 1] space.
+- visualize the normalized rt values
+
+The code below shows the used R functions for the applied rt normalization.
+
+```{r}
+normalize_rt <- function(S, S.training, reference_instrument = 'Retention.Time.QTRQP'){
+   S.normalized <- S
+   
+   # build linear model to reference_instrument 
+   # TODO(cp): use by
+   for (instrument in unique(S.normalized$instrument)){
+      
+      i <- paste("Retention.Time", instrument, sep='.')
+ 
+      rt.out <- S.training[, reference_instrument]
+      rt.in <- S.training[, i]
+      S.fit <- lm(rt.out ~ rt.in)
+     
+      S.normalized[S.normalized$instrument == instrument, 'Retention.Time'] <- predict(S.fit,                                                                                 data.frame(rt.in = S.normalized[S.normalized$instrument == instrument, 
+                                      'Retention.Time']))
+      
+    }
+
+  # scaling
+   S.normalized.min <- min(S.normalized$Retention.Time, na.rm = TRUE)
+   S.normalized.delta <- max(S.normalized$Retention.Time, na.rm = TRUE) - S.normalized.min 
+   
+   S.normalized$Retention.Time <- (S.normalized$Retention.Time - S.normalized.min) / S.normalized.delta
+
+   return(S.normalized)
+}
+```
+
+The `reshape_rt` method is used for reshaping the data from long to wide format which ease the the model building in the `normalize_rt` method above.
+
+```{r}
+reshape_rt <- function(S, plot=TRUE){
+    S <- S[grep("[by]", S$Fragment.Ion), ]
+    S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+    S <- aggregate(Retention.Time ~ Peptide.Sequence * instrument,
+                   FUN=mean, 
+                   data=S)
+    
+    #tt <- (table(S$Peptide.Sequence) == frequencyTableCutOff)
+    #S <- S[S$Peptide.Sequence %in% names(tt)[tt], ]
+    S <- droplevels(S)
+    S.training <- reshape(S, direction = 'wide', 
+                      v.names = 'Retention.Time', 
+                     timevar = c('instrument'), 
+                      idvar = 'Peptide.Sequence')
+    
+    if (plot == TRUE){
+      pairs(S.training, 
+          pch=as.integer(S.training$Peptide.Sequence), 
+          col=as.integer(S.training$Peptide.Sequence),
+          lower.panel = NULL)
+    }
+    return(S.training)
+}
+```
+
+The following R code are some helper functions designed to ease the visualization of the `msqc1_8rep` and `msqc1_dil`  rt values.
+
+```{r}
+plot_rt_8rep <- function(S, ...){
+  msqc1:::.figure_setup()
+    S <- S[grep("[by]", S$Fragment.Ion), ]
+    S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+    S <- aggregate(Retention.Time ~ Peptide.Sequence * File.Name.Id * instrument 
+                   * relative.amount * Isotope.Label.Type,
+                   FUN=mean, 
+                   data=S)
+    S <- droplevels(S)
+  
+    xyplot(Retention.Time ~ File.Name.Id  | Isotope.Label.Type * instrument, 
+           data = S, 
+           layout = c(10, 1),
+           group = S$Peptide.Sequence, 
+           auto.key = list(space = "right", points = TRUE, lines = FALSE, cex=1),
+          ...)
+}
+
+plot_rt_dil <- function(S, ...){
+  msqc1:::.figure_setup()
+    S <- S[grep("[by]", S$Fragment.Ion), ]
+    S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+    S <- aggregate(Retention.Time ~ Peptide.Sequence * File.Name * instrument 
+                   * relative.amount * Isotope.Label.Type,
+                   FUN=mean, 
+                   data=S)
+    S <- droplevels(S)
+    
+    xyplot(Retention.Time ~ relative.amount |  Isotope.Label.Type * instrument , 
+           data = S, 
+           layout = c(10, 1),
+           group = S$Peptide.Sequence, 
+           scales = list(x = list(rot = 45, log=TRUE, at=sort(unique(S$relative.amount)) )),
+           auto.key = list(space = "right", points = TRUE, lines = FALSE, cex=1),...)
+}
+```
+
+
+# 8 Technical Replicates
+
+Prepare the training data for the linear model.
+```{r echo=TRUE, fig.width=10, fig.height=10, fig.retina=3, warning=FALSE}
+S.training.8rep <- reshape_rt(msqc1_8rep)
+```
+
+
+```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
+plot_rt_8rep(msqc1_8rep, xlab='Replicate Id')
+```
+**Eight replicate retention time** - The graph displays the raw retention time (in minutes) verus the replicate Id of each sample. Each panel displays one LC-MS platform. On some platforms the loading phase was recorded (TRIPLETOF, QTRAP) while on the other platforms not.
+
+
+The following code will apply the retention time normalization for the `msqc_8rep` data:
+
+```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
+msqc1_8rep.norm <- normalize_rt(msqc1_8rep, S.training.8rep, 
+                                reference_instrument = 'Retention.Time.QTRAP')
+
+plot_rt_8rep(msqc1_8rep.norm,
+             xlab='Replicate Id',
+             ylab='Normalized Retention Time')
+```
+
+**Normalized eight replicate retention time** - The graphics displayes the normalized retention time for each peptide (heavy and light) across all plattforms. Apart from the *TAENFR* peptide all peptides show excelent elution time stability.
+
+
+# Dilution Series
+
+Prepare the training data for the linear model.
+```{r echo=TRUE, fig.width=10, fig.height=10, fig.retina=3, warning=FALSE}
+S.training.dil <- reshape_rt(msqc1_dil)
+```
+
+lets use QTRAP as reference
+```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
+plot_rt_dil(msqc1_dil)
+plot_rt_dil(msqc1_dil.norm <- normalize_rt(msqc1_dil, 
+                                           S.training.dil, 
+                                           reference_instrument = 'Retention.Time.QTRAP'),
+            ylab="Normalized Retention Time")
+```
+
+
+# LC Gradient Comparison
+
+
+
+```{r echo=FALSE, fig.width=10, fig.height=5, fig.retina=3, warning=FALSE}
+op <- par(mfrow=c(1,2), mar=c(4,4,1,1))
+
+
+plot(msqc1_8rep.norm$Retention.Time ~ msqc1_8rep$Retention.Time, 
+     pch=as.integer(msqc1_8rep.norm$Peptide.Sequence),
+     col=msqc1_8rep.norm$instrument,
+     xlim=c(0,100))
+
+legend("bottomright", 
+       as.character(unique(msqc1_8rep.norm$instrument)),
+       col= unique(msqc1_8rep.norm$instrument), 
+       pch=as.integer(unique(msqc1_8rep.norm$instrument)))
+
+plot(msqc1_dil.norm$Retention.Time ~ msqc1_dil$Retention.Time, 
+     pch=as.integer(msqc1_dil.norm$Peptide.Sequence),
+     col=msqc1_dil.norm$instrument,
+     xlim=c(0,100))
+
+legend("bottomright", 
+       as.character(unique(msqc1_dil.norm$instrument)),
+       col= unique(msqc1_dil.norm$instrument), 
+       pch=as.integer(unique(msqc1_dil.norm$instrument)))
+
+```
+**LC Gradient Comparison** - the graphs compare the LC gradient of each platform by plotting the normalized rt values again the raw rt values for the  `msqc1_8rep` (left) and `msqc1_dil` (right) data.
+
+
+# Session information
+
+```{r}
+sessionInfo()
+```
+
