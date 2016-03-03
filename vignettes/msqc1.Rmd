@@ -1,25 +1,24 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
+%\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
 -->
 
 ---
-title: "msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
+title: "Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
 author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
 date: "29 February 2016"
 output: html_document
 ---
 
 
-
-```{r}
-library(msqc1)
-```
-
- 
 Here we provide a experiment data package containing all the spreedsheets used for figures and supplemental figures for the following publication.
 
-```{r}
+```{r echo = TRUE, message = FALSE}
+if (!require(msqc1)){
+  ## try http:// if https:// URLs are not supported
+  source("https://bioconductor.org/biocLite.R")
+  biocLite("msqc1")
+}
 citation('msqc1')
 ```
 
@@ -28,7 +27,7 @@ The spreedsheets were extracted out of the [mass spectrometic meassurements](htt
 ## Peptide properties
 
 ### Figure - reference L:H ratio verus the on-column amout
-```{r "Supplementary Figure1", echo=FALSE, fig.width=6, fig.height=6, fig.retina=3, warning=FALSE}
+```{r "Supplementary Figure1", echo=FALSE, fig.width=6, fig.height=6, fig.retina=3, warning=FALSE, message = FALSE}
 plot(10 * msqc1::peptides$SIL.peptide.per.vial, msqc1::peptides$actual.LH.ratio,
      log='xy',
      ylab='reference L:H ratio',
@@ -64,7 +63,7 @@ All figures used in the publication were produced by using this package.
 Examples are shown below.
 
 ### Figure - Sigma mix peptide level signal
-```{r "Figure1", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE}
+```{r "Figure1", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE, message = FALSE}
 msqc1:::.figure1(data=msqc1_8rep, peptides=peptides)
 ```
 **Sigma mix peptide level signal** - The graph displays the log2 L:H area ratios of eight technical replicates over 14 peptides from five MS platforms. The 14 panels were ordered by the on column amount of heavy peptide per vial (0.8, 4, 20, 40, 80, 200, 500, 1000 fmol). The black line indicates the theoretical L:H ratio as reported in the QC certificate by Sigma-Aldrich. In a perfect setting all data points would be located close to the black line indicating a perfect match between light heavy ratios.
@@ -72,7 +71,7 @@ The dark grey boxes correspond to a 1-linear-fold change and the light grey boxe
 
 ### Figure - Ratio stability upon analyte dilution
 
-```{r "Figure3a", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE}
+```{r "Figure3a", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE, message = FALSE}
 msqc1:::.figure4(data=msqc1_dil, peptides=peptides)
 ```
 
@@ -83,7 +82,7 @@ The horizontal black line indicates the theoretical log2 L:H ratio.
 
 ### Figure - Accuracy
 
-```{r "Figure3b", echo=FALSE, fig.width=14, fig.height=4.5, fig.retina=3, warning=FALSE}
+```{r "Figure3b", echo = FALSE, fig.width = 14, fig.height = 4.5, fig.retina = 3, warning = FALSE, message = FALSE}
 msqc1:::.figure5(data=msqc1_dil, data_reference = msqc1_8rep)
 ```
 

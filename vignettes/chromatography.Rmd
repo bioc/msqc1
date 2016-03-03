@@ -10,7 +10,7 @@ date: "29 February 2016"
 output: html_document
 ---
 
-```{r}
+```{r, echo = FALSE, message = FALSE}
 if (!require(msqc1)){
   ## try http:// if https:// URLs are not supported
   source("https://bioconductor.org/biocLite.R")
