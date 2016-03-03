@@ -682,7 +682,7 @@
          scales = list(x = list(rot = 45)))
 }
   
-  .supplement_figure9<- function(data){
+.supplement_figure9 <- function(data){
     .figure_setup()
     
     s <- data
@@ -709,3 +709,92 @@
          type='b',
          scales = list(x = list(rot = 45)), layout=c(length(unique(s$Peptide.Sequence)),1))
 }
+
+.normalize_rt <- function(S, S.training, reference_instrument = 'Retention.Time.QTRQP'){
+  S.normalized <- S
+  
+  # build linear model to reference_instrument 
+  # TODO(cp): use by
+  for (instrument in unique(S.normalized$instrument)){
+    
+    i <- paste("Retention.Time", instrument, sep='.')
+    
+    rt.out <- S.training[, reference_instrument]
+    rt.in <- S.training[, i]
+    S.fit <- lm(rt.out ~ rt.in)
+    
+    S.normalized[S.normalized$instrument == instrument, 'Retention.Time'] <- predict(S.fit,                                                                                 data.frame(rt.in = S.normalized[S.normalized$instrument == instrument, 
+                                                                                                                                                                                                            'Retention.Time']))
+    
+  }
+  
+  # scaling
+  S.normalized.min <- min(S.normalized$Retention.Time, na.rm = TRUE)
+  S.normalized.delta <- max(S.normalized$Retention.Time, na.rm = TRUE) - S.normalized.min 
+  
+  S.normalized$Retention.Time <- (S.normalized$Retention.Time - S.normalized.min) / S.normalized.delta
+  
+  return(S.normalized)
+}
+
+.reshape_rt <- function(S, peptides=peptides, plot=TRUE){
+  S <- S[grep("[by]", S$Fragment.Ion), ]
+  S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+  S <- aggregate(Retention.Time ~ Peptide.Sequence * instrument,
+                 FUN=mean, 
+                 data=S)
+  
+  #tt <- (table(S$Peptide.Sequence) == frequencyTableCutOff)
+  #S <- S[S$Peptide.Sequence %in% names(tt)[tt], ]
+  S <- droplevels(S)
+  S.training <- reshape(S, direction = 'wide', 
+                        v.names = 'Retention.Time', 
+                        timevar = c('instrument'), 
+                        idvar = 'Peptide.Sequence')
+  
+  if (plot == TRUE){
+    pairs(S.training, 
+          pch=as.integer(S.training$Peptide.Sequence), 
+          col=as.integer(S.training$Peptide.Sequence),
+          lower.panel = NULL)
+  }
+  return(S.training)
+}
+
+
+.plot_rt_8rep <- function(S, peptides, ...){
+  .figure_setup()
+  S <- S[grep("[by]", S$Fragment.Ion), ]
+  S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+  S <- aggregate(Retention.Time ~ Peptide.Sequence * File.Name.Id * instrument 
+                 * relative.amount * Isotope.Label.Type,
+                 FUN=mean, 
+                 data=S)
+  S <- droplevels(S)
+  
+  xyplot(Retention.Time ~ File.Name.Id  | Isotope.Label.Type * instrument, 
+         data = S, 
+         layout = c(10, 1),
+         group = S$Peptide.Sequence, 
+         auto.key = list(space = "right", points = TRUE, lines = FALSE, cex=1),
+         ...)
+}
+
+.plot_rt_dil <- function(S, peptides,...){
+  .figure_setup()
+  S <- S[grep("[by]", S$Fragment.Ion), ]
+  S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+  S <- aggregate(Retention.Time ~ Peptide.Sequence * File.Name * instrument 
+                 * relative.amount * Isotope.Label.Type,
+                 FUN=mean, 
+                 data=S)
+  S <- droplevels(S)
+  
+  xyplot(Retention.Time ~ relative.amount |  Isotope.Label.Type * instrument , 
+         data = S, 
+         layout = c(10, 1),
+         group = S$Peptide.Sequence, 
+         scales = list(x = list(rot = 45, log=TRUE, at=sort(unique(S$relative.amount)) )),
+         auto.key = list(space = "right", points = TRUE, lines = FALSE, cex=1),...)
+}
+
