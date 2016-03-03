@@ -1,10 +1,10 @@
 <!--
 %\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{msqc1 - a mass spec data set for targeted proteomics performance evaluated}
+%\VignetteIndexEntry{msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
 -->
 
 ---
-title: "msqc1 - a mass spectrometer data set for targeted proteomics performance"
+title: "msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
 author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
 date: "29 February 2016"
 output: html_document
