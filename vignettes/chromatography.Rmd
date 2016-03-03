@@ -61,7 +61,7 @@ S.training.8rep <- msqc1:::.reshape_rt(msqc1_8rep, peptides=peptides)
 ```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
 msqc1:::.plot_rt_8rep(msqc1_8rep, peptides=peptides, xlab='Replicate Id')
 ```
-**Eight replicate retention time** - The graph displays the raw retention time (in minutes) verus the replicate Id of each sample. Each panel displays one LC-MS platform. On some platforms the loading phase was recorded (TRIPLETOF, QTRAP) while on the other platforms not.
+**8 replicate retention time** - The graph displays the raw retention time (in minutes) verus the replicate Id of each sample. Each panel displays one LC-MS platform. On some platforms the loading phase was recorded (TRIPLETOF, QTRAP) while on the other platforms not.
 
 
 The following code will apply the retention time normalization for the `msqc_8rep` data:
@@ -76,7 +76,7 @@ msqc1:::.plot_rt_8rep(msqc1_8rep.norm,
              ylab='Normalized Retention Time')
 ```
 
-**Normalized eight replicate retention time** - The graphics displayes the normalized retention time for each peptide (heavy and light) across all plattforms. Apart from the *TAENFR* peptide all peptides show excelent elution time stability.
+**Normalized 8 replicate retention time** - The graphics displayes the normalized retention time for each peptide (heavy and light) across all plattforms. Apart from the *TAENFR* peptide all peptides show excelent elution time stability.
 
 
 # Dilution Series
@@ -87,7 +87,7 @@ S.training.dil <- msqc1:::.reshape_rt(msqc1_dil, peptides=peptides)
 ```
 
 ```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
-msqc1:::.plot_rt_dil(msqc1_dil, peptides)
+msqc1:::.plot_rt_dil(msqc1_dil, peptides, xlab='Replicate Id', ylab='Raw Retention Time')
 msqc1_dil.norm <- msqc1:::.normalize_rt(msqc1_dil, 
                                         S.training.dil, 
                                         reference_instrument = 'Retention.Time.QTRAP')

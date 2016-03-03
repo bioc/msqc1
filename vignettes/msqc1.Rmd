@@ -82,7 +82,7 @@ The horizontal black line indicates the theoretical log2 L:H ratio.
 
 ### Figure - Accuracy
 
-```{r "Figure3b", echo = FALSE, fig.width = 14, fig.height = 4.5, fig.retina = 3, warning = FALSE, message = FALSE}
+```{r "Figure3b", echo = FALSE, fig.width = 14, fig.height = 5, fig.retina = 3, warning = FALSE, message = FALSE}
 msqc1:::.figure5(data=msqc1_dil, data_reference = msqc1_8rep)
 ```
 

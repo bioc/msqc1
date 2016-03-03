@@ -25,7 +25,7 @@
                                                   levels = x.a[order(x.a[,2], 
                                                                      decreasing = TRUE), 1])
     
-    xyplot(log(Area,10) ~ Peptide.Sequence | p * instrument, 
+    print(xyplot(log(Area,10) ~ Peptide.Sequence | p * instrument, 
                  groups=x.peptide.filtered$Protein.Name, 
                  data=x.peptide.filtered,
                  scales = list(x = list(rot = 45)), 
@@ -36,7 +36,7 @@
                  auto.key=list(space = "top", points = TRUE, lines = FALSE, cex=1),
                  levels=order(x.peptide.filtered$Peptide.Sequence, 
                               decreasing = TRUE)
-    )
+    ))
   })
 }
 
@@ -217,7 +217,7 @@
 .figure_setup <- function(){
   
   t <- trellis.par.get()
-  t$superpose.symbol$pch <- 1:7
+  t$superpose.symbol$pch <- 1:14
   t$superpose.line$col <- c("#0080ffAA", "#ff00ffAA",
   	"#00640080", "#ff0000AA", "#FFA50080", 
 	"#00ff00AA", "#A52A2A80")
