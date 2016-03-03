@@ -3,11 +3,19 @@
 %\VignetteIndexEntry{msqc1 - a mass spec data set for targeted proteomics performance evaluated}
 -->
 
+---
+title: "msqc1 - a mass spectrometer data set for targeted proteomics performance"
+author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
+date: "29 February 2016"
+output: html_document
+---
+
+
 
 ```{r}
 library(msqc1)
 ```
-# msqc1 - a mass spectrometer data set for targeted proteomics performance
+
  
 Here we provide a experiment data package containing all the spreedsheets used for figures and supplemental figures for the following publication.
 
