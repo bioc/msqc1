@@ -3,6 +3,9 @@ import("lattice")
 importFrom("stats", "aggregate", "sd", "lm")
 importFrom("utils", "read.csv")
 
+importFrom("graphics", "pairs")
+importFrom("stats", "predict", "reshape")
+
 exportClasses(msqc1)
 
 
