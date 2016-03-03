@@ -1,5 +1,9 @@
 #R
 
+# $HeadURL$
+# $Id$
+# $Date$
+
 .signal_response_ident_plot <- function(data, 
                            prot=c("P00915", "P00918", "P04040", "P02741", "P15559", "PPIA"), 
                            instrument="NA", peptides){
