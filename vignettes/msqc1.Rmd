@@ -82,12 +82,6 @@ msqc1:::.figure5(data=msqc1_dil, data_reference = msqc1_8rep)
 **Accuracy** - The graph displays in each panel a sensitivity curves for a given relative amount.
 
 
-# HPLC QC
-
-```{r "Supplement_figure9", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE}
-msqc1:::.supplement_figure9(data=msqc1_8rep)
-```
-
 # Session information
 ```{r}
 sessionInfo()
