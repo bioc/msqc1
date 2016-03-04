@@ -1,13 +1,18 @@
 <!--
-%\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{LC Observations - Retention Time Stability}
+%\VignetteEngine{knitr::knitr}
 -->
+
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 ---
 title: "LC Observations - Retention Time Stability"
 author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
 date: "29 February 2016"
-output: html_document
+
 ---
 
 ```{r, echo = FALSE, message = FALSE}
@@ -20,16 +25,16 @@ if (!require(msqc1)){
 
 This vignette file is thought to demonstrate the retention time stability of the `msqc1_8rep` and `msqc1_dil` data contained in the `msqc1` R package.
 
-# Problem: Retention time (rt) form different LC-MS platforms are often not comparable (duration, offset).
+# Problem: Retention Time (RT) form different LC-MS platforms are often not comparable (duration, offset).
 
 # Solution: Normalization 
 
 - define a reference platfrom (QTRAP)
-- for each platform build a linear model (in the following we use the `stats::lm` function) and map platfrom the rt space of the corresbonding platform into reference platform rt space (by using the `stats::predict.lm` method)
-- scale the normalized rt values into [0, 1] space.
-- visualize the normalized rt values
+- for each platform build a linear model (in the following we use the `stats::lm` function) and map platfrom the RT space of the corresbonding platform into reference platform RT space (by using the `stats::predict.lm` method)
+- scale the normalized RT values into \([0, 1]\) space. \(f:N \rightarrow [0,1]\)
+- visualize the normalized RT values
 
-The code below shows the used R functions for the applied rt normalization.
+The code below shows the used R functions for the applied RT normalization.
 
 ```{r}
 msqc1:::.normalize_rt
@@ -41,7 +46,7 @@ The `reshape_rt` method is used for reshaping the data from long to wide format 
 msqc1:::.reshape_rt
 ```
 
-The following R code are some helper functions designed to ease the visualization of the `msqc1_8rep` and `msqc1_dil`  rt values.
+The following R code are some helper functions designed to ease the visualization of the `msqc1_8rep` and `msqc1_dil`  RT values.
 
 ```{r}
 msqc1:::.plot_rt_8rep
@@ -123,7 +128,8 @@ legend("bottomright",
        pch=as.integer(unique(msqc1_dil.norm$instrument)))
 
 ```
-**LC Gradient Comparison** - the graphs compare the LC gradient of each platform by plotting the normalized rt values again the raw rt values for the  `msqc1_8rep` (left) and `msqc1_dil` (right) data.
+
+**LC Gradient Comparison** - the graphs compare the LC gradient of each platform by plotting the normalized RT values again the raw rt values for the  `msqc1_8rep` (left) and `msqc1_dil` (right) data.
 
 
 # Session information
