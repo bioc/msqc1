@@ -11,7 +11,7 @@ output: html_document
 ---
 
 
-Here we provide a experiment data package containing all the spreadsheets used for figures and supplemental figures for the following publication.
+Here we provide an experiment data package containing all the spread sheets used for figures and supplemental figures for the following publication.
 
 ```{r echo = TRUE, message = FALSE}
 if (!require(msqc1)){
@@ -22,7 +22,11 @@ if (!require(msqc1)){
 citation('msqc1')
 ```
 
-The spreadsheets were extracted out of the [mass spectrometric measurements](https://panoramaweb.org/labkey/search/home/search.view?q=Kockmann) by using the [skyline](https://skyline.gs.washington.edu) software version 3,1 and the following [template]() (t.b.d).
+Raw instrument data is accessible for registered users through [http://fgcz-bfabric.uzh.ch](http://fgcz-bfabric.uzh.ch/bfabric) as project 1959.
+Raw LC-MS data from all five platforms were imported into 
+[Skyline 3.1](https://skyline.gs.washington.edu), processed, and are available though 
+[https://panoramaweb.org/labkey/MSQC1.url](https://panoramaweb.org/labkey/MSQC1.url).
+This package contains data.frame objects exported by Skyline making the data available for the R world. 
 
 ## Peptide properties
 

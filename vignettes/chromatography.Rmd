@@ -3,7 +3,6 @@
 %\VignetteEngine{knitr::knitr}
 -->
 
-
 <script type="text/javascript"
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -12,7 +11,6 @@
 title: "LC Observations - Retention Time Stability"
 author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
 date: "29 February 2016"
-
 ---
 
 ```{r, echo = FALSE, message = FALSE}
