@@ -23,7 +23,9 @@ if (!require(msqc1)){
 
 This vignette file is thought to demonstrate the retention time stability of the `msqc1_8rep` and `msqc1_dil` data contained in the `msqc1` R package.
 
-# Problem: Retention Time (RT) form different LC-MS platforms are often not comparable (duration, offset).
+# Problem: 
+
+**Retention Time (RT) form different LC-MS platforms are often not comparable (duration, offset).**
 
 # Solution: Normalization 
 
