@@ -28,7 +28,7 @@ This vignette file is thought to demonstrate the retention time stability of the
 # Solution: Normalization 
 
 - define a reference platform (QTRAP)
-- for each platform build a linear model (in the following we use the `stats::lm` function) and map platform the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
+- for each platform build a linear model (in the following we use the `stats::lm` function) and map the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
 - scale the normalized RT values into \([0, 1]\) space. \(f:N \rightarrow [0,1]\)
 - visualize the normalized RT values
 

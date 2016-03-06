@@ -6,8 +6,7 @@
 ---
 title: "Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
 author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
-date: "29 February 2016"
-output: html_document
+date: "6 March 2016"
 ---
 
 
