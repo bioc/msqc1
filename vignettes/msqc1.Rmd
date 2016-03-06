@@ -27,7 +27,7 @@ Raw LC-MS data from all five platforms were imported into
 [https://panoramaweb.org/labkey/MSQC1.url](https://panoramaweb.org/labkey/MSQC1.url).
 This package contains data.frame objects exported by Skyline making the data available for the R world. 
 
-## Peptide properties
+## MSQC1 Peptide properties
 
 ### Figure - reference L:H ratio versus the on-column amount
 ```{r "Supplementary Figure1", echo=FALSE, fig.width=6, fig.height=6, fig.retina=3, warning=FALSE, message = FALSE}
@@ -44,7 +44,7 @@ text(10 * peptides$SIL.peptide.per.vial, peptides$actual.LH.ratio, peptides$Pept
 box()
 ```
 
-The scatter-plot displays the reference L:H ratio versus the on-column amount of heavy peptide as listed in table 1. Note, x and y axis are drawn in log scale.
+The scatter-plot displays the reference L:H ratio versus the on-column amount of heavy peptide of the MSQC1 peptide mix. Note, x and y axis are drawn in log scale.
 
 ##  Have fun with the data
 
