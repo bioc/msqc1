@@ -1,17 +1,29 @@
+---
+title: "LC Observations - Retention Time Stability"
+author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
+date: "`r Sys.Date()`"
+bibliography:
+  - ./msqc1.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{LC Observations - Retention Time Stability}
+output:
+  html_document:
+    theme: united	
+    toc: true
+---
+
 <!--
 %\VignetteIndexEntry{LC Observations - Retention Time Stability}
-%\VignetteEngine{knitr::knitr}
+%\VignetteEngine{knitr::rmarkdown}
 -->
 
 <script type="text/javascript"
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
----
-title: "LC Observations - Retention Time Stability"
-author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
-date: "29 February 2016"
----
+## Introduction 
+This vignette file is thought to demonstrate the retention time stability of the `msqc1_8rep` and `msqc1_dil` data contained in the `msqc1` R package.
 
 ```{r, echo = FALSE, message = FALSE}
 if (!require(msqc1)){
@@ -21,13 +33,15 @@ if (!require(msqc1)){
 }
 ```
 
-This vignette file is thought to demonstrate the retention time stability of the `msqc1_8rep` and `msqc1_dil` data contained in the `msqc1` R package.
 
-# Problem: 
+
+### Problem: 
 
 **Retention Time (RT) form different LC-MS platforms are often not comparable (duration, offset).**
 
-# Solution: Normalization 
+### Solution: Normalization 
+
+We us a similar approach for RT normalization as proposed in [@pmid22577012].
 
 - define a reference platform (QTRAP)
 - for each platform build a linear model (in the following we use the `stats::lm` function) and map the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
@@ -35,6 +49,7 @@ This vignette file is thought to demonstrate the retention time stability of the
 - visualize the normalized RT values
 
 The code below shows the used R functions for the applied RT normalization.
+
 
 ```{r}
 msqc1:::.normalize_rt
@@ -55,17 +70,17 @@ msqc1:::.plot_rt_dil
 ```
 
 
-# 8 Technical Replicates
+## 8 Technical Replicates RT plot
 
 Prepare the training data for the linear model.
 ```{r echo=TRUE, fig.width=10, fig.height=10, fig.retina=3, warning=FALSE}
 S.training.8rep <- msqc1:::.reshape_rt(msqc1_8rep, peptides=peptides)
 ```
 
-
 ```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
 msqc1:::.plot_rt_8rep(msqc1_8rep, peptides=peptides, xlab='Replicate Id')
 ```
+
 **8 replicate retention time** - The graph displays the raw retention time (in minutes) versus the replicate Id of each sample. Each panel displays one LC-MS platform. On some platforms the loading phase was recorded (TRIPLETOF, QTRAP) while on the other platforms not.
 
 
@@ -84,9 +99,14 @@ msqc1:::.plot_rt_8rep(msqc1_8rep.norm,
 **Normalized 8 replicate retention time** - The graphics displays the normalized retention time for each peptide (heavy and light) across all platforms. Apart from the *TAENFR* peptide all peptides show excellent elution time stability.
 
 
-# Dilution Series
+## Dilution Series RT plot
 
-Prepare the training data for the linear model.
+The graph in  displays the raw RT (in minutes) 
+versus the relative amount (x-axis in log scale) of each sample. 
+Each panel displays one LC-MS platform for each isotope label typ. 
+The graph on the bottom  displays the normalized RT for each peptide (heavy and light).
+*Note*: Since we have used different LC settings for the dilution data as we have used for the 8 rep data, we had to rebuild the linear models for the normalization.
+
 ```{r echo=TRUE, fig.width=10, fig.height=10, fig.retina=3, warning=FALSE}
 S.training.dil <- msqc1:::.reshape_rt(msqc1_dil, peptides=peptides)
 ```
@@ -101,7 +121,9 @@ msqc1:::.plot_rt_dil(msqc1_dil.norm, peptides=peptides, ylab="Normalized Retenti
 ```
 
 
-# LC Gradient Comparison
+## LC Gradient Comparison
+
+The graphs compare the LC gradient of each platform by plotting the normalized RT values again the raw RT values for the `msqc1_8rep` (left) and `msqc1_dil` (right) data.
 
 ```{r echo=FALSE, fig.width=10, fig.height=5, fig.retina=3, warning=FALSE}
 op <- par(mfrow=c(1,2), mar=c(4,4,1,1))
@@ -129,12 +151,11 @@ legend("bottomright",
 
 ```
 
-**LC Gradient Comparison** - the graphs compare the LC gradient of each platform by plotting the normalized RT values again the raw RT values for the `msqc1_8rep` (left) and `msqc1_dil` (right) data.
 
-
-# Session information
+## Session information
 
 ```{r}
 sessionInfo()
 ```
+## References
 

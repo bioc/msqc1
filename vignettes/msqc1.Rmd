@@ -1,29 +1,40 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
--->
+
 
 ---
 title: "Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
 author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
-date: "6 March 2016"
+date: "`r Sys.Date()`"
+bibliography:
+  - ./msqc1.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
+output:
+  html_document:
+    theme: united	
+    toc: true
 ---
 
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
+-->
 
-Here we provide an experiment data package containing all the spread sheets used for figures and supplemental figures for the following publication.
-
-```{r echo = TRUE, message = FALSE}
+```{r echo = FALSE, message = FALSE}
 if (!require(msqc1)){
   ## try http:// if https:// URLs are not supported
   source("https://bioconductor.org/biocLite.R")
-  biocLite("msqc1")
 }
-citation('msqc1')
 ```
 
-Raw instrument data is accessible for registered users through [http://fgcz-bfabric.uzh.ch](http://fgcz-bfabric.uzh.ch/bfabric) as project 1959.
-Raw LC-MS data from all five platforms were imported into 
-[Skyline 3.1](https://skyline.gs.washington.edu), processed, and are available though 
+## Introduction 
+
+Here we provide an experiment data package containing all the spread sheets used for figures and supplemental figures for the following [@msqc1] publication.
+Raw instrument data is accessible for registered users through 
+[http://fgcz-bfabric.uzh.ch](http://fgcz-bfabric.uzh.ch/bfabric) 
+as project 1959. Raw LC-MS data from all five platforms were imported into 
+[Skyline 3.1](https://skyline.gs.washington.edu) [see @pmid20147306], processed, 
+and are available though 
 [https://panoramaweb.org/labkey/MSQC1.url](https://panoramaweb.org/labkey/MSQC1.url).
 This package contains data.frame objects exported by Skyline making the data available for the R world. 
 
@@ -61,7 +72,7 @@ table(msqc1_dil$Peptide.Sequence)
 
 
 ## Graphics
-All figures used in the publication were produced by using this package.
+All figures used in the publication [@msqc1] were produced by using this package.
 
 Examples are shown below.
 
@@ -92,7 +103,9 @@ msqc1:::.figure5(data=msqc1_dil, data_reference = msqc1_8rep)
 **Accuracy** - The graph displays in each panel a sensitivity curves for a given relative amount.
 
 
-# Session information
+## Session information
 ```{r}
 sessionInfo()
 ```
+
+## References
