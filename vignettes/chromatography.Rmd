@@ -41,7 +41,11 @@ if (!require(msqc1)){
 
 ### Solution: Normalization 
 
-We us a similar approach for RT normalization as proposed in [@pmid22577012].
+We us the iRT concept [proposed in @pmid22577012] for the RT normalization.
+Instead of using the iRT-peptides we use the
+MSQC1-peptides as reference peptides between the different chromatographic settings and systems.
+
+We approach the approach problem by doing the following steps:
 
 - define a reference platform (QTRAP)
 - for each platform build a linear model (in the following we use the `stats::lm` function) and map the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
