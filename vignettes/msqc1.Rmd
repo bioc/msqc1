@@ -2,7 +2,7 @@
 
 ---
 title: "Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
-author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
+author: "Tobias Kockmann, Christian Trachsel, Christian Panse, Jonas Grossmann, and Witold E. Wolski"
 date: "`r Sys.Date()`"
 bibliography:
   - ./msqc1.bib
