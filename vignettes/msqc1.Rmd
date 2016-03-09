@@ -1,5 +1,3 @@
-
-
 ---
 title: "Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
 author: "Tobias Kockmann, Christian Trachsel, Christian Panse, Jonas Grossmann, and Witold E. Wolski"
@@ -19,6 +17,8 @@ output:
 %\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
 -->
+
+
 
 ```{r echo = FALSE, message = FALSE}
 if (!require(msqc1)){
@@ -80,8 +80,8 @@ Examples are shown below.
 ```{r "Figure1", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE, message = FALSE}
 msqc1:::.figure1(data=msqc1_8rep, peptides=peptides)
 ```
-**Sigma mix peptide level signal** - The graph displays the log2 L:H area ratios of eight technical replicates over 14 peptides from five MS platforms. The 14 panels were ordered by the on column amount of heavy peptide per vial (0.8, 4, 20, 40, 80, 200, 500, 1000 fmol). The black line indicates the theoretical L:H ratio as reported in the QC certificate by Sigma-Aldrich. In a perfect setting all data points would be located close to the black line indicating a perfect match between light heavy ratios.
-The dark grey boxes correspond to a 1-linear-fold change and the light grey boxes to a 2-fold change.
+**Sigma mix peptide level signal** - The graph displays the log2 L:H area ratios of eight technical replicates over 14 peptides from five MS platforms. The 14 panels were ordered by the on column amount of heavy peptide per vial (0.8, 4, 20, 40, 80, 200, 500, 1000 fmol). The black line indicates the theoretical L:H ratio as reported in the QC certificate by Sigma-Aldrich. In a perfect setting all data points would be located close to the black line indicating a perfect match between theoretical and measured log2 L:H ratios.
+The dark gray boxes correspond to a 0.5 and the light grey boxes to a deviation of 1 from the expected value (black line).
 
 ### Figure - Ratio stability upon analyte dilution
 
