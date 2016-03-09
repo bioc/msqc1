@@ -1,6 +1,6 @@
 ---
 title: "LC Observations - Retention Time Stability"
-author: "Tobias Kockmann, Christian Trachsel, and Christian Panse"
+author: "Tobias Kockmann, Christian Trachsel, Christian Panse, and Bernd Roschitzki"
 date: "`r Sys.Date()`"
 bibliography:
   - ./msqc1.bib
@@ -32,8 +32,6 @@ if (!require(msqc1)){
   biocLite("msqc1")
 }
 ```
-
-
 
 ### Problem: 
 
