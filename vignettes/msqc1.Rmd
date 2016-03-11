@@ -3,7 +3,8 @@ title: "Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Perform
 author: "Tobias Kockmann, Christian Trachsel, Christian Panse, Jonas Grossmann, and Witold E. Wolski"
 date: "`r Sys.Date()`"
 bibliography:
-  - ./msqc1.bib
+  - msqc1.bib
+csl: ieee.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}

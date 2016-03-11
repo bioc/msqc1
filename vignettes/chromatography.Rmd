@@ -3,7 +3,8 @@ title: "LC Observations - Retention Time Stability"
 author: "Tobias Kockmann, Christian Trachsel, Christian Panse, and Bernd Roschitzki"
 date: "`r Sys.Date()`"
 bibliography:
-  - ./msqc1.bib
+  - msqc1.bib
+csl: ieee.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{LC Observations - Retention Time Stability}
@@ -47,7 +48,7 @@ We approach the approach problem by doing the following steps:
 
 - define a reference platform (QTRAP)
 - for each platform build a linear model (in the following we use the `stats::lm` function) and map the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
-- scale the normalized RT values into \([0, 1]\) space. \(f:N \rightarrow [0,1]\)
+- scale the normalized RT values into [0, 1]
 - visualize the normalized RT values
 
 The code below shows the used R functions for the applied RT normalization.
