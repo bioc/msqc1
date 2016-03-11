@@ -10,6 +10,7 @@ vignette: >
   %\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
 output:
   html_document:
+    number_sections: true
     theme: united	
     toc: true
 ---
@@ -28,7 +29,7 @@ if (!require(msqc1)){
 }
 ```
 
-## Introduction 
+# Introduction 
 
 Here we provide an experiment data package containing all the spread sheets used for figures and supplemental figures published in [@msqc1].
 The raw instrument files are accessible for registered users through 
@@ -39,9 +40,9 @@ and are available though
 [https://panoramaweb.org/labkey/MSQC1.url](https://panoramaweb.org/labkey/MSQC1.url) when published.
 This package contains data.frame objects exported by Skyline making the data available for the R world. 
 
-## MSQC1 Peptide properties
+# MSQC1 Peptide properties
 
-### Figure - reference L:H ratio versus the on-column amount
+## Figure - reference L:H ratio versus the on-column amount
 ```{r "Supplementary Figure1", echo=FALSE, fig.width=6, fig.height=6, fig.retina=3, warning=FALSE, message = FALSE}
 plot(10 * msqc1::peptides$SIL.peptide.per.vial, msqc1::peptides$actual.LH.ratio,
      log='xy',
@@ -58,8 +59,7 @@ box()
 
 The scatter-plot displays the reference L:H ratio versus the on-column amount of heavy peptide of the MSQC1 peptide mix. Note, x and y axis are drawn in log scale.
 
-##  Have fun with the data
-
+#  Have fun with the data
 
 show the dilution series
 ```{r}
@@ -72,16 +72,16 @@ table(msqc1_dil$Peptide.Sequence)
 ```
 
 
-## Graphics
+# Graphics
 
-### Figure - Sigma mix peptide level signals
+## Figure - Sigma mix peptide level signals
 ```{r "Figure1", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE, message = FALSE}
 msqc1:::.figure1(data=msqc1_8rep, peptides=peptides)
 ```
 **Sigma mix peptide level signals** - The graph displays the log2 L:H area ratios of eight technical replicates over 14 peptides from five MS platforms. The 14 panels were ordered by the on column amount of heavy peptide per vial (0.8, 4, 20, 40, 80, 200, 500, 1000 fmol). The black line indicates the theoretical L:H ratio as reported in the QC certificate by Sigma-Aldrich. In a perfect setting all data points would be located close to the black line indicating a perfect match between theoretical and measured log2 L:H ratios.
 The dark gray boxes correspond to a 0.5 and the light grey boxes to a deviation of 1 from the expected value (black line).
 
-### Figure - Ratio stability upon analyte dilution
+## Figure - Ratio stability upon analyte dilution
 
 ```{r "Figure3a", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE, message = FALSE}
 msqc1:::.figure4(data=msqc1_dil, peptides=peptides)
@@ -92,7 +92,7 @@ Color grouping was done by instrument. The loess fit curves were added for visua
 The SIL value given in each panel legend is valid for the relative amount of 1.
 The horizontal black line indicates the theoretical log2 L:H ratio.
 
-### Figure - Accuracy
+## Figure - Accuracy
 
 ```{r "Figure3b", echo = FALSE, fig.width = 14, fig.height = 5, fig.retina = 3, warning = FALSE, message = FALSE}
 msqc1:::.figure5(data=msqc1_dil, data_reference = msqc1_8rep)
@@ -101,9 +101,9 @@ msqc1:::.figure5(data=msqc1_dil, data_reference = msqc1_8rep)
 **Accuracy** - The graph displays in each panel a sensitivity curves for a given relative amount.
 
 
-## Session information
+# Session information
 ```{r}
 sessionInfo()
 ```
 
-## References
+# References

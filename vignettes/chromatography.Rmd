@@ -10,6 +10,7 @@ vignette: >
   %\VignetteIndexEntry{LC Observations - Retention Time Stability}
 output:
   html_document:
+    number_sections: true
     theme: united	
     toc: true
 ---
@@ -23,7 +24,7 @@ output:
   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
-## Introduction 
+# Introduction 
 This vignette file is thought to demonstrate the retention time stability of the `msqc1_8rep` and `msqc1_dil` data contained in the `msqc1` R package.
 
 ```{r, echo = FALSE, message = FALSE}
@@ -34,11 +35,11 @@ if (!require(msqc1)){
 }
 ```
 
-### Problem: 
+## Problem: 
 
 **Retention Time (RT) form different LC-MS platforms are often not comparable (duration, offset).**
 
-### Solution: Normalization 
+## Solution: Normalization 
 
 We us the iRT concept [proposed in @pmid22577012] for the RT normalization.
 Instead of using the iRT-peptides we use the
@@ -73,6 +74,7 @@ msqc1:::.plot_rt_dil
 ```
 
 
+# RT plot
 ## 8 Technical Replicates RT plot
 
 Prepare the training data for the linear model.
@@ -155,10 +157,10 @@ legend("bottomright",
 ```
 
 
-## Session information
+# Session information
 
 ```{r}
 sessionInfo()
 ```
-## References
+# References
 
