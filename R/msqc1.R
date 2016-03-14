@@ -308,7 +308,7 @@
            panel.rect(0.5,0,1,1,col='#EEEEEEEE', border='#EEEEEEEE')
            panel.abline(h=0.9)
            panel.xyplot(x,y,...)
-           panel.text(0.50,0.55,"AUC:", pos=4)
+           panel.text(0.50,0.55,"AUC [0,1]:", pos=4)
            panel.text(0.51, seq(0.3,0.5,length=5), paste(AUC$instrument, AUC$sensitivity, sep=" = "), pos=4, cex=0.75)
          },
          #ylab = list('relative number of data items having a distance to the theoretical log2ratio cutoff',  cex=.75),
@@ -737,7 +737,7 @@
   return(S.normalized)
 }
 
-.reshape_rt <- function(S, peptides=peptides, plot=TRUE){
+.reshape_rt <- function(S, peptides=peptides, plot=TRUE, ...){
   S <- S[grep("[by]", S$Fragment.Ion), ]
   S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
   S <- aggregate(Retention.Time ~ Peptide.Sequence * instrument,
@@ -753,10 +753,10 @@
                         idvar = 'Peptide.Sequence')
   
   if (plot == TRUE){
-    pairs(S.training, 
+    pairs(S.training[, 2:6], 
           pch=as.integer(S.training$Peptide.Sequence), 
           col=as.integer(S.training$Peptide.Sequence),
-          lower.panel = NULL)
+          lower.panel = NULL, ...)
   }
   return(S.training)
 }

@@ -78,11 +78,13 @@ msqc1:::.plot_rt_dil
 ## 8 Technical Replicates RT plot
 
 Prepare the training data for the linear model.
-```{r echo=TRUE, fig.width=10, fig.height=10, fig.retina=3, warning=FALSE}
-S.training.8rep <- msqc1:::.reshape_rt(msqc1_8rep, peptides=peptides)
+```{r echo=TRUE, fig.width=8, fig.height=8, fig.retina=3, warning=FALSE, cache=FALSE, fig.asp=1, fig.cap=''}
+S.training.8rep <- msqc1:::.reshape_rt(msqc1_8rep, peptides=peptides, cex=2)
 ```
 
-```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
+**8 rep Scatterplot Matrices Plot** - Color and icon type indicates the differnet peptides. On an idea plot all values would be on one line.
+
+```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE, fig.cap='', cache=FALSE}
 msqc1:::.plot_rt_8rep(msqc1_8rep, peptides=peptides, xlab='Replicate Id')
 ```
 
@@ -91,7 +93,7 @@ msqc1:::.plot_rt_8rep(msqc1_8rep, peptides=peptides, xlab='Replicate Id')
 
 The following code will apply the retention time normalization for the `msqc_8rep` data:
 
-```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
+```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE, cache=FALSE}
 msqc1_8rep.norm <- msqc1:::.normalize_rt(msqc1_8rep, S.training.8rep, 
                                 reference_instrument = 'Retention.Time.QTRAP')
 
@@ -106,17 +108,20 @@ msqc1:::.plot_rt_8rep(msqc1_8rep.norm,
 
 ## Dilution Series RT plot
 
+```{r echo=TRUE, fig.width=8, fig.height=8, fig.retina=3, warning=FALSE, cache=FALSE, fig.asp=1, fig.cap=''}
+S.training.dil <- msqc1:::.reshape_rt(msqc1_dil, peptides=peptides, cex=2)
+```
+
+**Dilution Scatterplot Matrices Plot** - Color and icon type indicates the differnet peptides. On an idea plot all values would be on one line.
+
+
 The graph in  displays the raw RT (in minutes) 
 versus the relative amount (x-axis in log scale) of each sample. 
 Each panel displays one LC-MS platform for each isotope label typ. 
 The graph on the bottom  displays the normalized RT for each peptide (heavy and light).
 *Note*: Since we have used different LC settings for the dilution data as we have used for the 8 rep data, we had to rebuild the linear models for the normalization.
 
-```{r echo=TRUE, fig.width=10, fig.height=10, fig.retina=3, warning=FALSE}
-S.training.dil <- msqc1:::.reshape_rt(msqc1_dil, peptides=peptides)
-```
-
-```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE}
+```{r echo=TRUE, fig.width=15, fig.height=9, fig.retina=3, warning=FALSE, cache=FALSE}
 msqc1:::.plot_rt_dil(msqc1_dil, peptides, xlab='Replicate Id', ylab='Raw Retention Time')
 msqc1_dil.norm <- msqc1:::.normalize_rt(msqc1_dil, 
                                         S.training.dil, 
@@ -130,7 +135,7 @@ msqc1:::.plot_rt_dil(msqc1_dil.norm, peptides=peptides, ylab="Normalized Retenti
 
 The graphs compare the LC gradient of each platform by plotting the normalized RT values again the raw RT values for the `msqc1_8rep` (left) and `msqc1_dil` (right) data.
 
-```{r echo=FALSE, fig.width=10, fig.height=5, fig.retina=3, warning=FALSE}
+```{r echo=FALSE, fig.width=10, fig.height=5, fig.retina=3, warning=FALSE, cache=FALSE}
 op <- par(mfrow=c(1,2), mar=c(4,4,1,1))
 
 
@@ -159,7 +164,7 @@ legend("bottomright",
 
 # Session information
 
-```{r}
+```{r, cache=FALSE}
 sessionInfo()
 ```
 # References

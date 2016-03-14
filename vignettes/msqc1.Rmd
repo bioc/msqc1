@@ -71,6 +71,16 @@ show the peptide frequency
 table(msqc1_dil$Peptide.Sequence)
 ```
 
+show ion types
+```{r}
+table(msqc1_dil$Fragment.Ion)
+```
+
+
+show instruments
+```{r}
+table(msqc1_dil$instrument)
+```
 
 # Graphics
 
