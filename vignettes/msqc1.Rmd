@@ -88,6 +88,7 @@ table(msqc1_dil$instrument)
 ```{r "Figure1", echo=FALSE, fig.width=14, fig.height=9, fig.retina=3, warning=FALSE, message = FALSE}
 msqc1:::.figure1(data=msqc1_8rep, peptides=peptides)
 ```
+
 **Sigma mix peptide level signals** - The graph displays the log2 L:H area ratios of eight technical replicates over 14 peptides from five MS platforms. The 14 panels were ordered by the on column amount of heavy peptide per vial (0.8, 4, 20, 40, 80, 200, 500, 1000 fmol). The black line indicates the theoretical L:H ratio as reported in the QC certificate by Sigma-Aldrich. In a perfect setting all data points would be located close to the black line indicating a perfect match between theoretical and measured log2 L:H ratios.
 The dark gray boxes correspond to a 0.5 and the light grey boxes to a deviation of 1 from the expected value (black line).
 
