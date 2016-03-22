@@ -98,39 +98,41 @@ The dark gray boxes correspond to a 0.5 and the light grey boxes to a deviation 
 # taken from WEW
 .compute_volcano_tuple <- function(x, y, adjust=TRUE, alternative="two.sided"){
   stopifnot(nrow(x) == nrow(y))
-  pval = rep(NA, nrow(x))
-  fchange = rep(NA, nrow(x))
-  for(i in 1:nrow(x)){
-    tmp <- t.test(x[i,],y[i,], paired = FALSE, alternative=alternative)
-    pval[i] <- tmp$p.value
-    fchange[i] <- tmp$estimate[1] - tmp$estimate[2]
-  }
+
+  res <- lapply(1:nrow(x), function(i){
+    r <- t.test(x[i,], y[i,], paired = FALSE, alternative=alternative)
+    data.frame(FC=(r$estimate[1] - r$estimate[2]), p.value=r$p.value)
+  })
+  
+  res <- do.call('rbind', res)
+  
   if(adjust){
-    pval <- p.adjust(pval, method="BH")
+    res$pval <- p.adjust(res$p.value, method="BH")
   }
-  return(list(pval= pval, fchange=fchange))
+  return(res)
 } 
 
-.shape_for_volcano <- function(s.8rep){
-  s.8rep <- s.8rep[grep("[by]", s.8rep$Fragment.Ion), ]
-  s.8rep <- s.8rep[s.8rep$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
-  s.8rep.peptide <- aggregate(Area ~ Peptide.Sequence + Isotope.Label.Type + instrument + File.Name.Id,
-                data=s.8rep, FUN=sum)
+.shape_for_volcano <- function(S, peptides){
+  
+  S <- S[grep("[by]", S$Fragment.Ion), ]
+  S <- S[S$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+  S <- aggregate(Area ~ Peptide.Sequence + Isotope.Label.Type + instrument + File.Name.Id,
+                data=S, FUN=sum)
   
   
-  s.8rep.reduced.area <- data.frame(
-    Peptide.Sequence=paste(s.8rep.peptide$Peptide.Sequence, s.8rep.peptide$Isotope.Label.Type, sep=','),
-    Area=s.8rep.peptide$Area,
-    instrument=paste(s.8rep.peptide$instrument), rep=s.8rep.peptide$File.Name.Id)
+  S <- data.frame(
+    Peptide.Sequence=paste(S$Peptide.Sequence, S$Isotope.Label.Type, sep=','),
+    Area=S$Area,
+    instrument=paste(S$instrument), rep=S$File.Name.Id)
   
   
-  S <- reshape(s.8rep.reduced.area,
-                    v.name="Area",
-                    idvar=c("Peptide.Sequence", 'instrument'),
-                    timevar="rep",
-                    direction = "wide")
+  S <- reshape(S,
+               v.name="Area",
+               idvar=c("Peptide.Sequence", 'instrument'),
+               timevar="rep",
+               direction = "wide")
   
-  p<-gsub(".light", "", gsub(".heavy", "", S$Peptide.Sequence))
+  p <- gsub(".light", "", gsub(".heavy", "", S$Peptide.Sequence))
 
   row.names(S) <- 1:nrow(S)
   S <- (droplevels(S[which(p %in% names(table(p)[table(p) == 10])), ]))
@@ -146,17 +148,17 @@ The dark gray boxes correspond to a 0.5 and the light grey boxes to a deviation 
   Peptide.Sequence <- gsub(".light", "", S$Peptide.Sequence[idx.l])
   instrument <- S$instrument[idx.l]
   
-  S <- data.frame(Peptide.Sequence, instrument, FC=v$fchange, p=v$pval)
+  S <- data.frame(Peptide.Sequence, instrument, log2FC=v$FC, p.value=v$p.value)
 }
 
 ```
 
 ```{r fig.width=5, fig.height=10, fig.retina=3, echo=TRUE}
-S <- .shape_for_volcano(msqc1_8rep)
+S <- .shape_for_volcano(S=msqc1_8rep, peptides)
 
 msqc1:::.figure_setup()
 
-xyplot(-log(p, 10) ~ FC|instrument, data=S, group=Peptide.Sequence,
+xyplot(-log(p.value, 10) ~ log2FC | instrument, data=S, group=Peptide.Sequence,
        panel = function(...){
          panel.abline(v=c(-1,1), col='lightgray')
          panel.abline(h=-log(0.05,10), col='lightgray')
