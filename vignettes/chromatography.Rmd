@@ -41,14 +41,14 @@ if (!require(msqc1)){
 
 ## Solution: Normalization 
 
-We us the iRT concept [proposed in @pmid22577012] for the RT normalization.
-Instead of using the iRT-peptides we use the
-MSQC1-peptides as reference peptides between the different chromatographic settings and systems.
+The iRT concept [proposed in @pmid22577012] for the RT normalization is used.
+Instead of using the iRT-peptides 
+MSQC1-peptides are used as reference peptides between the different chromatographic settings and systems.
 
-We approach the approach problem by doing the following steps:
+The normalization is done by applying the following steps:
 
 - define a reference platform (QTRAP)
-- for each platform build a linear model (in the following we use the `stats::lm` function) and map the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
+- for each platform linear model is build (in the following we use the `stats::lm` function) which maps the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
 - scale the normalized RT values into [0, 1]
 - visualize the normalized RT values
 
@@ -65,7 +65,7 @@ The `reshape_rt` method is used for reshaping the data from long to wide format 
 msqc1:::.reshape_rt
 ```
 
-The following R code are some helper functions designed to ease the visualization of the `msqc1_8rep` and `msqc1_dil`  RT values.
+The following R code listings displays some helper functions designed to ease the visualization of the `msqc1_8rep` and `msqc1_dil` RT values.
 
 ```{r}
 msqc1:::.plot_rt_8rep

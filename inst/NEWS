@@ -1,4 +1,8 @@
 
+CHANGES IN VERSION 0.99.11
+------------------------
+o cosmetics on the vignettes
+
 CHANGES IN VERSION 0.99.10
 ------------------------
 o added volcano plot for 8rep data in msqc1 vignette 
