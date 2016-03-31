@@ -48,7 +48,7 @@ MSQC1-peptides are used as reference peptides between the different chromatograp
 The normalization is done by applying the following steps:
 
 - define a reference platform (QTRAP)
-- for each platform linear model is build (in the following we use the `stats::lm` function) which maps the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
+- for each platform a linear model is build (in the following we use the `stats::lm` function) which maps the RT space of the corresponding platform into reference platform RT space (by using the `stats::predict.lm` method)
 - scale the normalized RT values into [0, 1]
 - visualize the normalized RT values
 
