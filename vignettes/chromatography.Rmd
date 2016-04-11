@@ -1,6 +1,7 @@
 ---
 title: "LC Observations - Retention Time Stability"
 author: "Tobias Kockmann, Christian Trachsel, Christian Panse, and Bernd Roschitzki"
+package: "`r pkg_ver('specL')`"
 date: "`r Sys.Date()`"
 bibliography:
   - msqc1.bib
@@ -8,11 +9,9 @@ csl: ieee.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{LC Observations - Retention Time Stability}
+  %\VignetteEncoding{UTF-8}
 output:
-  html_document:
-    number_sections: true
-    theme: united	
-    toc: true
+  BiocStyle::html_document
 ---
 
 <!--

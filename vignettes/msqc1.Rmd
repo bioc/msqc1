@@ -1,6 +1,7 @@
 ---
 title: "Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation"
 author: "Tobias Kockmann, Christian Trachsel, Christian Panse, Jonas Grossmann, and Witold E. Wolski"
+package: "`r pkg_ver('specL')`"
 date: "`r Sys.Date()`"
 bibliography:
   - msqc1.bib
@@ -8,11 +9,9 @@ csl: ieee.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Introducing msqc1 - A Mass Spec Data set for Targeted Proteomics Performance Evaluation}
+  %\VignetteEncoding{UTF-8}
 output:
-  html_document:
-    number_sections: true
-    theme: united	
-    toc: true
+  BiocStyle::html_document
 ---
 
 <!--
@@ -94,13 +93,15 @@ The dark gray boxes correspond to a 0.5 and the light grey boxes to a deviation 
 
 
 ## Figure - Volcano Plot
+
+
 ```{r, echo=FALSE}
 # taken from WEW
 .compute_volcano_tuple <- function(x, y, adjust=TRUE, alternative="two.sided"){
   stopifnot(nrow(x) == nrow(y))
 
   res <- lapply(1:nrow(x), function(i){
-    r <- t.test(x[i,], y[i,], paired = FALSE, alternative=alternative)
+    r <- t.test(x[i,], y[i,], paired =FALSE, alternative=alternative)
     data.frame(FC=(r$estimate[1] - r$estimate[2]), p.value=r$p.value)
   })
   
@@ -164,6 +165,8 @@ xyplot(-log(p.value, 10) ~ log2FC | instrument, data=S, group=Peptide.Sequence,
          panel.abline(h=-log(0.05,10), col='lightgray')
          panel.xyplot(...)
        },
+       ylab='-log10 of p-value',
+       xlab='log2 fold change',
        layout=c(1,5),
        auto.key = list(space = "right", points = TRUE, lines = FALSE, cex=1))
 
