@@ -11,9 +11,9 @@ bibentry(bibtype = "Article",
             person("Jonas", "Grossmann"),
             person("Witold E.", "Wolski"),
             person("Ralph", "Schlapbach")),
-         journal="Proteomics (submitted)",
+         journal="PROTEOMICS",
          pages = "",
          month = "",
          year = 2016,
          note = "",
-         url = "")
+         url = "http://onlinelibrary.wiley.com/journal/10.1002/%28ISSN%291615-9861/accepted")
