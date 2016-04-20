@@ -1,10 +1,10 @@
 Package: msqc1
 Title: Sigma mix MSQC1 data
-Version: 0.99.12
+Version: 0.99.13
 Author: Tobias Kockmann, Christian Trachsel, Christian Panse
 Maintainer: Christian Panse <cp@fgcz.ethz.ch>
 Depends: R (>= 3.2), lattice, stats, utils
-Suggests: BiocStyle, knitr, testthat
+Suggests: BiocStyle, knitr, testthat, specL
 Description: The data set contains an eight technical replicate data
         set and a three replicate dilution series of the MS Qual/Quant
         QC Mix standard sample (Sigma-Aldrich, Buchs, Switzerland)

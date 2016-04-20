@@ -19,9 +19,6 @@ output:
 %\VignetteEngine{knitr::rmarkdown}
 -->
 
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 # Introduction 
 This vignette file is thought to demonstrate the retention time stability of the `msqc1_8rep` and `msqc1_dil` data contained in the `msqc1` R package.
