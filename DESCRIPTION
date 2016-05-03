@@ -1,6 +1,6 @@
 Package: msqc1
 Title: Sigma mix MSQC1 data
-Version: 1.0.0
+Version: 1.1.0
 Author: Tobias Kockmann, Christian Trachsel, Christian Panse
 Maintainer: Christian Panse <cp@fgcz.ethz.ch>
 Depends: R (>= 3.2), lattice, stats, utils
