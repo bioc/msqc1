@@ -1,6 +1,6 @@
 Package: msqc1
 Title: Sigma mix MSQC1 data
-Version: 1.1.2
+Version: 1.1.3
 Author: Tobias Kockmann, Christian Trachsel, Christian Panse
 Maintainer: Christian Panse <cp@fgcz.ethz.ch>
 Depends: R (>= 3.2), lattice, stats, utils
@@ -15,4 +15,4 @@ LazyData: true
 VignetteBuilder: knitr
 NeedsCompilation: no
 biocViews: ExperimentData, MassSpectrometryData, ReproducibleResearch
-URL: https://panoramaweb.org/labkey/MSQC1.url
+URL: https://panoramaweb.org/labkey/MSQC1.url, http://fgcz-bfabric.uzh.ch/bfabric/project.html?projectId=1959
