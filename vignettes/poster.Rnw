@@ -1,0 +1,672 @@
+%\VignetteIndexEntry{ASMS 2016 poster (in portrait) abstract ID number: 282492}
+\documentclass[portrait,a0]{a0poster}
+
+\usepackage{multicol}
+
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[latin1]{inputenc}
+\usepackage[authoryear,round]{natbib}
+\usepackage{sidecap}
+\usepackage[scaled]{helvet}
+\usepackage[latin1]{inputenc}
+\graphicspath{{./graphics/}}
+
+%\makesavenoteenv{tabular}
+
+
+\addtolength{\textwidth}{1cm}
+\addtolength{\oddsidemargin}{-1cm}
+\setlength{\topmargin}{-2.6cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\footskip}{0cm}
+\setlength{\columnsep}{3cm}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{2ex}
+\pagestyle{empty}
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+\renewcommand{\familydefault}{phv}
+\renewcommand*\familydefault{\sfdefault}
+\definecolor{NTNUBlue}{rgb}{0,0.6,1}
+\definecolor{FGCZ}{rgb}{0,0.6,1}
+\makeatletter
+\renewcommand{\section}{\@startsection
+        {section}%                          % the name
+        {1}%                                % the level
+        {0mm}%                              % the indent
+        {-\baselineskip}%                   % the beforeskip
+        {1mm}%                              % the afterskip
+        {\Large\color{NTNUBlue}\bfseries}}% % the style
+\renewcommand{\subsection}{\@startsection
+        {subsection}%                       % the name
+        {2}%                                % the level
+        {0mm}%                              % the indent
+        {-0.9\baselineskip}%                % the beforeskip
+        {1mm}%                              % the afterskip
+        {\large\color{NTNUBlue}\bfseries}}% % the style
+\renewcommand{\subsubsection}{\@startsection
+        {subsubsection}%                    % the name
+        {3}%                                % the level
+        {0mm}%                              % the indent
+        {-0.7\baselineskip}%                % the beforeskip
+        {1mm}%                              % the afterskip
+        {\color{NTNUBlue}\bfseries}}% % the style
+\makeatother
+
+\def\subfigtopskip{-1pt}       % Length from the top of the subfigure box to
+                               %   the begining of the FIGURE box.
+\def\subfigbottomskip{-1pt}    % Length from the bottom of the CAPTION to
+                               %   the bottom of the subfigure.
+\def\subfigcapskip{-1pt}       % Length from the bottom of the FIGURE to the
+                               %   begining of the CAPTION.
+\def\subfigcapmargin{-1pt}     % Indentation of the caption from the sides
+                               %   of the subfigure box.
+
+%\renewcommand{\normalsize}{\fontsize{24.88}{30}\selectfont}
+%\renewcommand{\normalsize}{\fontsize{20.74}{25}\selectfont}
+\renewcommand{\normalsize}{\fontsize{22.00}{26.52}\selectfont}
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{
+\put(0,0){
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+%\includegraphics[width=\paperwidth,height=\paperheight, keepaspectratio]{background}
+\vfill
+}}}
+
+\SweaveOpts{prefix.string=plot, eps = FALSE, pdf = TRUE}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\AddToShipoutPicture{\BackgroundPic}
+
+\begin{center}
+\noindent\centerline{\includegraphics[width=\paperwidth]{FGCZ_Poster_Header_2014}}\\[2cm]
+
+\parbox{0.95\textwidth}{
+
+\resizebox{.95\textwidth}{!}{
+\textsf{ \textbf{{\Huge Targeted Proteomics coming of age -- SRM PRM and DIA performance evaluated from  a core facility perspective}}}\\[2.0cm]
+}
+
+\vspace{0.5cm}
+
+\resizebox{.9\textwidth}{!}{\hspace{3.5cm} Tobias Kockmann$^\diamond$, Christian Trachsel$^\diamond$, Christian Panse$^\diamond$, {\AA}sa W{\aa}hlander$^\ddag$, Nathalie Selevsek$^\diamond$, Jonas Grossmann$^\diamond$, Witold E. Wolski$^\diamond$, \underline{Claudia Fortes}$^\diamond$, \underline{Paolo Nanni}$^\diamond$ and Ralph Schlapbach$^\diamond$}\\[1.0cm]
+}
+
+\end{center}
+\vspace{0.5cm}
+\begin{multicols}{4}
+\setlength{\columnseprule}{1pt}
+
+%\begin{multicols}{2}
+%\setlength{\columnseprule}{1pt}
+\section{Introduction}
+
+Quantitative mass spectrometry is a rapidly evolving methodology applied in a large number of - omics type research projects. During the past years, new designs of mass spectrometers have been developed and launched as commercial systems while in parallel new data acquisition schemes and data analysis paradigms have been introduced. Core facilities provide access to such technologies, but also actively support the researchers in finding and applying the best-suited analytical approach. In order to implement a solid fundament for this decision making process, facilities need to constantly compare and benchmark the various approaches. In this work we compare the quantitative accuracy and precision of current label-free targeted proteomics approaches (SRM, PRM and DIA) across multiple liquid chromatography mass spectrometry (LC-MS) platforms, using a readily available commercial standard sample.
+
+\vspace{0.5cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\columnwidth]{hit_map}
+\caption{\textbf{Accuracy and precision}\label{fig:hitmap}}
+\end{figure}
+
+%\paragraph{Novel Aspect}
+%Extensive quantitative comparison of targeted proteomics approaches on five different instrument platforms and a small user study.
+
+\section{Methods}
+
+A pre-digested protein sample (MSQC1; Sigma-Aldrich) with {\em a priori} known 
+analyte quantities (mixture of 6 trypsin-digested human proteins
+and 14 corresponding heavy synthetic peptides) was targeted in a complex yeast 
+matrix on all platforms. In a first part, the quantitative accuracy and
+precision (see figure \ref{fig:hitmap}) was investigated at constant analyte 
+quantities. In a second part, the impact of decreasing analyte quantities on 
+analytical performance was studied over a concentration range of three orders 
+of magnitude (dilution series data). Finally, the human influence on 
+quantitative accuracy was 
+investigated and contrasted with machine learning solutions (user study).
+
+
+
+%The figure lists target peptides contained in MSQC1 mix.
+
+<<label=msqc1, keep.source = FALSE, eval = TRUE, fig = TRUE, width=4, height=4, echo=FALSE, include=FALSE>>=
+library(msqc1)
+plot(10 * msqc1::peptides$SIL.peptide.per.vial, msqc1::peptides$actual.LH.ratio, 
+     log='xy', 
+     ylab='reference L:H ratio',
+     xlab='on column amount [fmol]',
+     axes=FALSE,
+     ylim=c(min(1 * msqc1::peptides$SIL.peptide.per.vial), 100),
+     xlim=c(0.8, 4000)); 
+
+axis(1, 10 * peptides$SIL.peptide.per.vial, 10 * peptides$SIL.peptide.per.vial )
+axis(2, peptides$actual.LH.ratio, peptides$actual.LH.ratio)
+text(10 * peptides$SIL.peptide.per.vial, peptides$actual.LH.ratio, peptides$Peptide.Sequence, cex=0.5 ,pos=4, srt=11)
+box()
+@
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\columnwidth]{plot-msqc1}
+
+\caption{\textbf{Target peptides} -- The scatter-plot displays the reference L:H ratio versus the on-column amount of heavy peptide. Note, x and y axis are drawn in log scale.}
+
+\end{figure}
+
+
+
+% <<label=chromatographyDil, eval = TRUE, fig = TRUE, echo=FALSE, include=FALSE, width=14.0, height=7.0>>=
+% msqc1:::.plot_rt_dil(msqc1_dil.norm, peptides=peptides, ylab="Normalized Retention Time")
+% @
+
+<<label=chromatographySP, eval = TRUE, fig = TRUE, echo=FALSE, include=FALSE, width=5.0, height=10.0>>=
+
+library(msqc1)
+op <- par(mfrow=c(2,1), mar=c(5,5,5,1))
+S.training.8rep <- msqc1:::.reshape_rt(msqc1_8rep, peptides=peptides, cex=2, plot=FALSE)
+msqc1_8rep.norm <- msqc1:::.normalize_rt(msqc1_8rep, S.training.8rep,
+                                reference_instrument = 'Retention.Time.QTRAP')
+
+
+
+
+S.training.dil <- msqc1:::.reshape_rt(msqc1_dil, peptides=peptides, cex=2,plot=FALSE)
+msqc1_dil.norm <- msqc1:::.normalize_rt(msqc1_dil, 
+                                        S.training.dil, 
+                                        reference_instrument = 'Retention.Time.QTRAP')
+
+
+plot(msqc1_8rep.norm$Retention.Time ~ msqc1_8rep$Retention.Time,
+     #pch=as.integer(msqc1_8rep.norm$Peptide.Sequence),
+     main='8 repl. data',
+     xlab='empirical RT',
+     ylab='normalized RT',
+     col=msqc1_8rep.norm$instrument,
+     xlim=c(0,100))
+
+legend("bottomright",
+       as.character(unique(msqc1_8rep.norm$instrument)),
+       col= unique(msqc1_8rep.norm$instrument),
+       pch=22)
+
+plot(msqc1_dil.norm$Retention.Time ~ msqc1_dil$Retention.Time,
+     #pch=as.integer(msqc1_dil.norm$Peptide.Sequence),
+        main='dilution series',
+     xlab='empirical RT',
+     ylab='normalized RT',
+     col=msqc1_dil.norm$instrument,
+     xlim=c(0,100))
+
+legend("bottomright",
+       as.character(unique(msqc1_dil.norm$instrument)),
+       col= unique(msqc1_dil.norm$instrument),pch=22)
+
+
+@
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\columnwidth]{plot-chromatographySP}
+%\includegraphics[width=1.0\columnwidth]{plot-chromatographyDilSP}
+\caption{\textbf{Chromatography} -- The graphs compare the LC gradient of each platform by plotting the
+normalized RT values versus the empirical RT values for the 8 replicate (up) and dilution series (down) data}
+\end{figure}
+
+
+\begin{table}[H]
+%\includegraphics[width=1.0\columnwidth]{graphics/Paolo_Methods}
+
+
+\begin{minipage}{1.0\columnwidth}
+\resizebox{1.0\columnwidth}{!}{
+\begin{tabular}{lcrrc}
+\hline
+\hline
+MS system& Analysis mode & PCS & IT & MS2 res.\\
+\hline
+TSQ Vantage & SRM & 0.7~Da & 20~ms & - \\
+QTRAP~5500 & SRM & 0.7~Da & 20~ms & -\\
+Q~EXACTIVE &  PRM & 2.0~Da &120~ms \footnote{or 1e5}  & 70'000\footnote{at 200 m/z}\\
+Q~EXACTIVE~HF & DIA & 25.0~Da & 45~ms\footnote{or 3e6} & 30'000\footnote{at 200 m/z}\\
+TripleTOF~5600 & SWATH & 25.0~Da & 100~ms & 15'000\\
+\hline
+\hline
+\end{tabular}
+}
+\end{minipage}
+
+
+
+\caption{\textbf{Measurement schemes} --  Summarizes the measurement schemes compared in this study. PCS: Precursor selectivity, IT: Injection time, MS2 res.: reolution of MS2 scan. For Orbitrap type analyzers the max. injection time and the automated gain control (AGC) value is given. Filling of the C-trap will end as soon as one of the two parameters (IT or AGC) is fullfilled. }
+\end{table}
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.8\columnwidth]{plot-chromatographyDilSP}
+% \caption{\textbf{Chromatography} -- The graph compare the LC gradient of each platform by plotting the % % normalized RT values again the raw RT values.}
+% \end{figure}
+
+\section{Results}
+\newcommand{\barrow}{\item[\color{NTNUBlue}\ding{228}]}
+\begin{itemize}
+\item[--] Good linearity for all targeted peptides across the tested concentration range was observed.
+
+\item[--] Targeted analysis platforms delivered very reproducible (ie. intra-assay CVs less than 15\%) and consistent quantitative data sets, even between platforms (see figure \ref{fig:8rep-Precision}).
+
+\item[--] Expected fold changes were obtained for all dilution points, however at low peptide concentrations, the accuracy of the measurements were compromised to different extents depending on the MS platform (see figure \ref{fig:stability}).
+
+\item[--] Compared to the automated evaluation of peakgroups in Skyline a manual curation usually leads to a higher number of quantified peaks but only expert user manage to do this without compromising on the variance (see figure \ref{fig:user}).Each manual peakgroup validation will introduce a human bias which is not reproducible and therefore automated validation is favored (see figure \ref{fig:user}).
+
+\end{itemize}
+
+
+
+% We are convinced that such benchmarking activities are important and necessary for the community to evaluate workflow performances objectively. Nevertheless, each workflow comes with its strength and weakness and needs to be evaluated within the given framework and research question. Finally, our results demonstrate that targeted analysis can be made reproducible between different platforms and allow the rapid and reliable characterization of protein targets in complex matrices independent of workflow and platform.
+%In the user study for the data analysis, we show that compared to the automated evaluation of peakgroups in Skyline a manual curation usually leads to a higher number of quantified peaks but only expert user manage to do this without compromising on the variance while beginner users have a larger standard deviation of error than the automated evaluation. Additionally, each manual peakgroup validation will introduce a human bias which is not reproducible and therefore automated validation is favored.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\columnwidth]{plot-figure6}
+\caption{
+{\bf Human impact on quantitative accuracy} -- 
+The scatterplots graph the standard deviation of the error between measured and 
+reference $\log_2$ L:H ratio against the number of valid ratios (L and H value 
+is not NA) for each subject.
+The crossing grey lines indicate the algorithmic proposed start solution
+of the Skyline legacy peak picking.
+On the Q-trap no automated peak group selection was trained since no decoy transitions 
+were measured. mProphet and second-best were trained on the 8 repl. data 
+set and applied with a q-value cut-off of 0.001.
+\label{fig:user}}
+\end{figure}
+
+
+
+<<figure3, eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=4.0, height=4.0>>=
+msqc1:::.figure3(data=msqc1_8rep, peptides=peptides)
+@
+
+\begin{figure}[H]
+\centering
+\subfigure[]{\includegraphics[width=1.0\columnwidth]{plot-figure3}}
+\caption{{\bf \label{fig:8rep-Precision} Precision} -- The violin and box plots display
+the distribution of the peptide level coefficient of variance (CV) computed on the light and 
+heavy peptide signal of each platform.}
+% Note on the figure the y--axis uses  logarithmic scale.  
+% SRM/PRM methods display a smaller CV in comparison to DIA 
+% approaches. The CV values of all devices are less than 20\%.
+% In general the CV of all instruments beside of the Qexactive HF indicate a 
+% similar level of performance.}
+\end{figure}
+
+%\end{multicols}
+
+<<echo=FALSE>>=
+library(msqc1)
+@
+
+<<figure2, eval=FALSE, echo=FALSE, fig=TRUE, include=FALSE, width=7.0, height=7.0>>=
+msqc1:::.figure2(data=msqc1_8rep)
+@
+
+<<echo=FALSE>>=
+
+.panel.msqc1_dil <- function(...){
+  idx <- order(msqc1::peptides$SIL.peptide.per.vial[order(msqc1::peptides$Peptide.Sequence)])
+  peptide.idx <- sort(msqc1::peptides$Peptide.Sequence)[idx]
+  
+  pep <- peptide.idx[panel.number()]
+  pep.idx <- (which(as.character(pep) == as.character(msqc1::peptides$Peptide.Sequence)))
+  Protein.Name <- (msqc1::peptides$Protein.Name[pep.idx])
+  actual.LH.ratio <- (msqc1::peptides$actual.LH.ratio[pep.idx])
+  
+  SIL.peptide.per.vial <- (msqc1::peptides$SIL.peptide.per.vial[(which(as.character(pep) == as.character(msqc1::peptides$Peptide.Sequence)))])
+  
+  # log2 changes
+  panel.rect(-100,log2(actual.LH.ratio)-1, 5, log2(actual.LH.ratio)+1 ,border = '#EEEEEEEE', col='#EEEEEEEE')
+  panel.rect(-100,log2(actual.LH.ratio)-0.5, 5, log2(actual.LH.ratio)+0.5 ,border = '#CCCCCCCC', col='#CCCCCCCC')
+  
+  # zero line
+  panel.abline(h=c(0, log2(actual.LH.ratio)), col=c("grey", "black"), lwd=c(1,1))
+  
+  # plot the data
+  panel.xyplot(...)
+  panel.xyplot(..., type='smooth')
+  
+  # legend
+  SIL.onColumnAmount <- paste("SIL on column=", round(SIL.peptide.per.vial * 10, 1), "fmol",sep='')
+  message(Protein.Name)
+  x.x<-0.85
+  x.cex<-0.7
+  
+  offset <- 0
+  if (actual.LH.ratio < 5){
+  }else{offset <- -10}
+  ltext(x=x.x, y=8.6 + offset, as.character(Protein.Name), cex=x.cex, pos=2)
+  ltext(x=x.x, y=7.2 + offset, SIL.onColumnAmount, cex=x.cex, pos=2)
+  #ltext(x=x.x, y=8, paste("SIL=",round(SIL.peptide.per.vial, 2),sep=''), cex=x.cex, pos=2)
+  ltext(x=x.x, y=5.8 + offset, paste("actual.LH.ratio=",round(actual.LH.ratio, 2),sep=''), cex=x.cex, pos=2)
+}
+
+.figure4 <- function(data, peptides){
+  msqc1:::.figure_setup()
+  # load the package data
+  # s <- msqc1::load_msqc1('dilSeries.csv')
+  
+  s <- data
+  s <- s[grep("[by]", s$Fragment.Ion), ]
+  # aggregate the haevy and light transition areas
+  s.peptide_areas <- aggregate(Area ~ instrument + Isotope.Label.Type + relative.amount + Peptide.Sequence + File.Name, 
+                               data=s, FUN=function(x){sum(x, na.rm=TRUE)})
+  
+  s.light <- s.peptide_areas[s.peptide_areas$Isotope.Label.Type=='light',] 
+  s.heavy <- s.peptide_areas[s.peptide_areas$Isotope.Label.Type=='heavy',]
+  
+  s.peptie_areas_hl <- merge(s.heavy, s.light, by=c('instrument', 'Peptide.Sequence', 'relative.amount', 'File.Name'))
+  
+  names(s.peptie_areas_hl) <- c("instrument", "Peptide.Sequence", 
+                                "relative.amount", "File.Name", 
+                                "Isotope.Label.Type.x", "Area.heavy", 
+                                "Isotope.Label.Type.y", "Area.light")
+  
+  idx <- order(peptides$SIL.peptide.per.vial[order(peptides$Peptide.Sequence)])
+  peptide.idx <- sort(peptides$Peptide.Sequence)[idx]
+  
+  xyplot(log2(Area.light) - log2(Area.heavy) ~ relative.amount | Peptide.Sequence, 
+         groups=s.peptie_areas_hl$instrument,
+         data=s.peptie_areas_hl, 
+         panel=.panel.msqc1_dil,
+         layout=c(2,7),
+         auto.key=list(space = "top", points = TRUE, lines = FALSE, cex=1),
+         index.cond=list(idx),
+         scales=list(x = list(rot = 45, log=TRUE, at=sort(unique(s.peptie_areas_hl$relative.amount)) )),
+         sub="log2 light heavy ratios of 6 dilutions on 5 MS plattforms",
+         main='sigma mix peptide level signal')
+}
+
+.figure5 <- function(data, data_reference){
+  msqc1:::.figure_setup()
+  
+  s <- data
+  s <- s[grep("[by]", s$Fragment.Ion), ]
+  s <- s[!s$Peptide.Sequence %in%  c('TAENFR','GYSIFSYATK'), ]
+  
+  s.peptide_areas <- aggregate(Area ~ instrument + Isotope.Label.Type + relative.amount + Peptide.Sequence + File.Name,  data=s, FUN=function(x){sum(x, na.rm=TRUE)})
+  
+  s.light <- s.peptide_areas[s.peptide_areas$Isotope.Label.Type=='light',] 
+  s.heavy <- s.peptide_areas[s.peptide_areas$Isotope.Label.Type=='heavy',]
+  
+  s.peptie_areas_hl <- merge(s.heavy, s.light, by=c('instrument', 'Peptide.Sequence', 'relative.amount', 'File.Name'))
+  
+  names(s.peptie_areas_hl) <- c("instrument", "Peptide.Sequence", 
+                                "relative.amount", "File.Name", 
+                                "Isotope.Label.Type.x", "Area.heavy", 
+                                "Isotope.Label.Type.y", "Area.light")
+  
+ 
+  s.8rep <- data_reference
+  xx.table <- table(s.8rep$Peptide.Sequence)
+  
+  
+  xxx <- do.call('rbind', 
+                 lapply(c(0), function(cutoff){
+                   xx.240 <- names(xx.table[xx.table > cutoff * 240 | xx.table == 160])
+                   
+                   sensitivity.dil <- msqc1:::.get_sensitivity_relative.amount(s.peptie_areas_hl[s.peptie_areas_hl$Peptide.Sequence %in% xx.240,], 
+                                                                               max=42/14*12)
+                   
+                   sensitivity.dil$cutoff <- cutoff
+                   sensitivity.dil
+                 }))
+                 
+  
+  AUC <- aggregate(sensitivity ~ instrument + relative.amount, 
+                   data=xxx[xxx$log2ratio.cutoff<=1,], 
+                   FUN=function(x){round(sum(x)/length(x),2)})
+  
+  AUC.relative.amount <- unique(AUC$relative.amount)
+  
+  xyplot(sensitivity ~ log2ratio.cutoff | relative.amount , 
+         group=xxx$instrument, 
+         #xlab="log2-scaled L:H cutoff value ",
+         xlab=expression(epsilon),
+         ylab='relative amount correctly quantified replicates',
+         panel=function(...){
+           pn = panel.number()
+           panel.rect(0,0,0.5,1,col='#CCCCCCCC', border='#CCCCCCCC')
+           panel.rect(0.5,0,1,1,col='#EEEEEEEE', border='#EEEEEEEE')
+           panel.abline(h=c(0.5,0.9,1), col='darkgrey')
+           panel.xyplot(...)
+           message(paste(pn, AUC.relative.amount[pn]))
+           AUC.panel <- AUC[AUC$relative.amount == AUC.relative.amount[pn], ]
+           panel.text(1.50,0.31,"AUC [0,1]:", pos=4)
+           panel.text(1.51, seq(0.05,0.25,length=5), 
+                      paste(AUC.panel$instrument, AUC.panel$sensitivity, sep=" = "), 
+                      pos=4, cex=0.75)
+         },
+         sub = list('sensitivity (relative number of data items having a distance to the theoretical log2ratio cutoff)', cex=1),
+         data=xxx,
+         xlim=c(0,5),
+         type='l', 
+         strip = strip.custom(strip.names = TRUE, strip.levels = TRUE),
+         auto.key=list(space = "top", points = TRUE, lines = FALSE, cex=1),
+         lwd=3,
+         layout=c(3,2)
+  )
+}
+@
+<<figure4,eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=5.0, height=14.0>>=
+.figure4(data = msqc1_dil, peptides=peptides)
+@
+<<label=figure5, eval = TRUE, fig = TRUE, echo=FALSE, include=FALSE, width=8.0, height=8.0>>=
+.figure5(data = msqc1_dil, data_reference = msqc1_8rep)
+@
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\columnwidth]{plot-figure4}
+\includegraphics[width=1.0\columnwidth]{plot-figure5}
+\caption{\textbf{Ratio stability upon analyte dilution and accuracy} --
+Upper chart: Each scatterplot panel displays the experimental derived $\log_2$ L:H ratios versus the relative amount. Color grouping was done by instrument. The LOESS fit curves were added for visualizing the trend. The SIL value given in each panel legend is valid for the relative amount of 1. The horizontal black line indicates the theoretical $\log_2$ L:H ratio. On both visualizations grey color boxes indicate the one and 2-linear-fold change,
+Lower chart: The graph displays in each panel a sensitivity curves for one relative amount for all the used workflows.
+\label{fig:stability}}
+\end{figure}
+
+
+
+<<supplement_figure6, eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=21.0, height=9.0>>=
+msqc1:::.supplement_figure6(data=msqc1_dil, peptides=peptides)
+@
+
+<<supplement_figure7,eval=FALSE, echo=FALSE, fig=TRUE, include=FALSE, width=14.0, height=7.0>>=
+msqc1:::.supplement_figure7(data=msqc1_dil)
+@
+
+<<echo=FALSE>>=
+.figure6 <- function(data, peptides){
+  msqc1:::.figure_setup()
+  x_user <- data
+  x_user <- droplevels(x_user[x_user$Peptide.Sequence %in% peptides$Peptide.Sequence, ])
+  
+  x_user.light <- x_user[x_user$Isotope.Label.Type == "light",]
+  x_user.heavy <- x_user[x_user$Isotope.Label.Type == "heavy",]
+  
+  m_user <- merge(x_user.heavy, x_user.light, 
+                  by=c('instrument', 'File.Name', 'Peptide.Sequence', 'Replicate.Name',
+                       'Fragment.Ion', 'relative.amount', 'user', 'attempt', 'Protein.Name', 'Precursor.Charge'))
+  
+  pp <- data.frame(ratio=m_user$Area.y / m_user$Area.x, 
+                   user=m_user$user, 
+                   attempt=m_user$attempt,
+                   instrument=m_user$instrument, 
+                   Peptide.Sequence=m_user$Peptide.Sequence)
+  
+  m_user <- merge(peptides, pp, by='Peptide.Sequence')
+  
+  idx <- which(is.infinite(m_user$ratio))
+  m_user$ratio[idx] <- NA
+  
+  user_n <- aggregate((actual.LH.ratio - ratio) ~ user + instrument + attempt, 
+                      data=m_user, 
+                      FUN=function(x){length(x)})
+  names(user_n)[4] <- 'n'
+  user_sd <- aggregate((actual.LH.ratio - ratio) ~ user + instrument + attempt, 
+                       data=m_user, 
+                       FUN=function(x){sd(x,na.rm=TRUE)})
+  names(user_sd)[4] <- 'sd'
+  
+  user_sd_n <- cbind(user_sd, user_n)
+  xyplot(sd ~ n | instrument, 
+         group=user_sd_n$attempt, 
+         data=user_sd_n,
+         xlab='number of valid ratios',
+         ylab="Standard deviation of Error",
+         panel = function(...){
+           
+           auto.sd <- user_sd$sd[user_sd$attempt=='legacy']
+           auto.n <- user_n$n[user_n$attempt=='legacy']
+           panel.abline(h=auto.sd[panel.number()],col='grey')
+           panel.abline(v=auto.n[panel.number()],col='grey')
+           panel.xyplot(..., cex=1.4, lwd=1.4, type='p')
+         },
+         auto.key=list(space = "top", points = TRUE, lines = FALSE, cex=1.5)
+  )
+}
+@
+
+<<figure6,eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=7.0, height=7.0>>=
+.figure6(data=msqc1_userstudy, peptides=peptides)
+@
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\columnwidth]{plot-supplement_figure6}
+\caption{\textbf{Comparision of precursor and product ion} --
+Each panel displays the experimentally derived $\log_2$ L:H ratios versus the 
+relative amount. The black line indicates the reference $\log_2$ L:H value. 
+Dark and light grey shaded areas mark error margins of 1- and 2-fold on the 
+linear scale, respectively.
+\label{fig:MS1_prodIon}
+}
+\end{figure}
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=1.0\columnwidth]{plot-supplement_figure7}
+%\caption{\textbf{Comparision of accuracy between precursor and product} -- 
+%Each panel shows the relative number of measured log2 L:H ratios within the error margin $\varepsilon$.
+%The dark and light grey areas correspond to a 1-fold, 2-fold change on the linear scale, respectivly.
+%The peptides \texttt{TAENF[R]} and \texttt{GYSIFSYAT[K]} were not considered.}
+%\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+%\resizebox{1.0\columnwidth}{!}
+%{
+\includegraphics[width=.47\columnwidth]{Radarplots_2} % TSQ
+\includegraphics[width=.47\columnwidth]{Radarplots_4} % QTRA
+\includegraphics[width=.47\columnwidth]{Radarplots_1} % EQ
+\includegraphics[width=.47\columnwidth]{Radarplots_3} % HF
+\includegraphics[width=.47\columnwidth]{Radarplots_5} % TrTOF
+%\fbox{\includegraphics[width=.2\columnwidth]{Radarplots_legend}}
+%}
+\caption{{\bf Radarplot}  of different workflow metrics scaled on an arbitrary axis with the units 0--10. Values do not necessarily represent global applicable values but rather reflect the situation at the FGCZ.
+For the following categories the axis reflects 0 = worst, 10 = best: 
+Peptides per injection,
+Sample throughput,
+Accuracy,
+Precision,
+Flexibility post acquisition,
+Sensitivity; 0 = best, 10 = worst:
+Assay development time,
+Price per injection,
+Data size,
+Data analysis.
+}
+\end{figure}
+
+
+
+\section{Conclusions}
+
+The daily operational business of a core facility is normally not allowing for optimization of each method parameter, prior to recording a data set. This is reflected in this study by running the experiments with methods used on a routine basis in our core facility. 
+Our study shows that targeted data acquisition (SRM, PRM) outperforms targeted data extraction strategies (DIA) with respect to quantitative accuracy and precision, especially when the analyte concentration are low. But targeted acquisition methods are only suited for monitoring a limited number of targets, whily for screening experiments targeted data extraction workflows clearly outperform targeted data acquisition with respect to the number of features which can be followed. 
+The question of whether greater throughput justifies lower sensitivity/specificity has yet to be answered in the context of the individual research project. In addition, large-scale DIA is very resource demanding (e.g. on the computational side) and especially data analysis needs more effort due to the high complexity of the raw data. Not all research environments are equally prepared for such challenges and should consider these aspects during experimental design setup. 
+
+\paragraph{Acknowledgements}
+We thank Laura~Kunz and Bernd~Roschitzki for participating in our user study, 
+and Bernd Roschitzki for critically reading our manuscript. We are grateful to 
+Can T{\"u}rker, Marco Schmidt and Ugur G{\"u}rel 
+for providing the b-fabric 
+information management system.
+We thank ETH Zurich and University of Zurich for 
+their financial support. 
+
+%\nocite{msqc1}
+\begin{thebibliography}{1}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{Kockmann \emph{et~al.}(2016)Kockmann, Trachsel, Panse, Wahlander,
+  Selevsek, Grossmann, Wolski, and Schlapbach}]{msqc1}
+Kockmann T, Trachsel C, Panse C, Wahlander A, Selevsek N, Grossmann J, Wolski
+  WE, Schlapbach R (2016).
+\newblock \enquote{Targeted proteomics coming of age - SRM, PRM and DIA
+  performance evaluated from a core facility perspective.}
+\newblock \emph{PROTEOMICS}, pp. n/a--n/a.
+\newblock ISSN 1615-9861.
+\newblock \doi{10.1002/pmic.201500502}.
+\newblock \urlprefix\url{http://dx.doi.org/10.1002/pmic.201500502}.
+
+\includegraphics[width=0.33\columnwidth]{qr_pmic_201500502}
+\end{thebibliography}
+
+\end{multicols}
+
+
+%\vspace{-0.5cm}
+\resizebox{1.0\textwidth}{!}
+{
+Contact: 
+$^\diamond$
+ETHZ\texttt{|}UZH,
+Functional Genomics Center Zurich,
+Winterthurerstr. 190,
+CH-8057 Zurich,
+SWITZERLAND,
+Phone: +41 44 635 39 10,
+Fax: +41 44 635 39 22,
+EMail: \url{staffproteomics@fgcz.ethz.ch},
+URL: \url{http://bioconductor.org/packages/msqc1/};~
+$\ddag$~{\AA}sa W{\aa}hlander,
+AstraZeneca
+Nucleotide Bioanalysis, Drug Safety and Metabolism, Innovative Medicines
+M{\"o}lndal, SE-43183, SWEDEN,
+Phone: +46 (0)725470491.
+%now with AstraZeneca, V{\"a}stra G{\"o}taland County, Sweden.
+} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
