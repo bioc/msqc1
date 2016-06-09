@@ -131,7 +131,7 @@ A pre-digested protein sample (MSQC1; Sigma-Aldrich) with {\em a priori} known
 analyte quantities (mixture of 6 trypsin-digested human proteins
 and 14 corresponding heavy synthetic peptides) was targeted in a complex yeast 
 matrix on all platforms. In a first part, the quantitative accuracy and
-precision (see figure \ref{fig:hitmap}) was investigated at constant analyte 
+precision (see Figure \ref{fig:hitmap}) was investigated at constant analyte 
 quantities. In a second part, the impact of decreasing analyte quantities on 
 analytical performance was studied over a concentration range of three orders 
 of magnitude (dilution series data). Finally, the human influence on 
@@ -174,6 +174,7 @@ box()
 <<label=chromatographySP, eval = TRUE, fig = TRUE, echo=FALSE, include=FALSE, width=5.0, height=10.0>>=
 
 library(msqc1)
+msqc1:::.figure_setup()
 op <- par(mfrow=c(2,1), mar=c(5,5,5,1))
 S.training.8rep <- msqc1:::.reshape_rt(msqc1_8rep, peptides=peptides, cex=2, plot=FALSE)
 msqc1_8rep.norm <- msqc1:::.normalize_rt(msqc1_8rep, S.training.8rep,
@@ -188,39 +189,34 @@ msqc1_dil.norm <- msqc1:::.normalize_rt(msqc1_dil,
                                         reference_instrument = 'Retention.Time.QTRAP')
 
 
-plot(msqc1_8rep.norm$Retention.Time ~ msqc1_8rep$Retention.Time,
-     #pch=as.integer(msqc1_8rep.norm$Peptide.Sequence),
-     main='8 repl. data',
-     xlab='empirical RT',
-     ylab='normalized RT',
-     col=msqc1_8rep.norm$instrument,
-     xlim=c(0,100))
+S.8rep <- data.frame(normRT=msqc1_8rep.norm$Retention.Time, 
+              empRT=msqc1_8rep$Retention.Time, 
+              instrument=msqc1_8rep.norm$instrument, 
+              type='8 replicates')
 
-legend("bottomright",
-       as.character(unique(msqc1_8rep.norm$instrument)),
-       col= unique(msqc1_8rep.norm$instrument),
-       pch=22)
+S.dil <- data.frame(normRT=msqc1_dil.norm$Retention.Time, 
+              empRT=msqc1_dil$Retention.Time, 
+              instrument=msqc1_dil.norm$instrument, 
+              type='dilution series')
 
-plot(msqc1_dil.norm$Retention.Time ~ msqc1_dil$Retention.Time,
-     #pch=as.integer(msqc1_dil.norm$Peptide.Sequence),
-        main='dilution series',
-     xlab='empirical RT',
-     ylab='normalized RT',
-     col=msqc1_dil.norm$instrument,
-     xlim=c(0,100))
+S<-do.call('rbind',list(S.8rep, S.dil))
 
-legend("bottomright",
-       as.character(unique(msqc1_dil.norm$instrument)),
-       col= unique(msqc1_dil.norm$instrument),pch=22)
-
-
+xyplot(normRT ~ empRT | type, 
+       group=instrument, 
+       xlab='empirical RT',
+       ylab='normalized RT',
+       auto.key=list(space = "top", points = TRUE, lines = FALSE, cex=1),
+       data=S, layout=c(1,2))
 @
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\columnwidth]{plot-chromatographySP}
 %\includegraphics[width=1.0\columnwidth]{plot-chromatographyDilSP}
-\caption{\textbf{Chromatography} -- The graphs compare the LC gradient of each platform by plotting the
-normalized RT values versus the empirical RT values for the 8 replicate (up) and dilution series (down) data}
+\caption{\textbf{Chromatography} -- The graphs compare the LC gradient 
+of each platform by plotting the
+normalized RT values versus the empirical RT values for the 
+8 replicate (bottom) and dilution series (top) data.}
 \end{figure}
 
 
@@ -262,11 +258,11 @@ TripleTOF~5600 & SWATH & 25.0~Da & 100~ms & 15'000\\
 \begin{itemize}
 \item[--] Good linearity for all targeted peptides across the tested concentration range was observed.
 
-\item[--] Targeted analysis platforms delivered very reproducible (ie. intra-assay CVs less than 15\%) and consistent quantitative data sets, even between platforms (see figure \ref{fig:8rep-Precision}).
+\item[--] Targeted analysis platforms delivered very reproducible (ie. intra-assay CVs less than 15\%) and consistent quantitative data sets, even between platforms (see Figure \ref{fig:8rep-Precision}).
 
-\item[--] Expected fold changes were obtained for all dilution points, however at low peptide concentrations, the accuracy of the measurements were compromised to different extents depending on the MS platform (see figure \ref{fig:stability}).
+\item[--] Expected fold changes were obtained for all dilution points, however at low peptide concentrations, the accuracy of the measurements were compromised to different extents depending on the MS platform (see Figure \ref{fig:stability}).
 
-\item[--] Compared to the automated evaluation of peakgroups in Skyline a manual curation usually leads to a higher number of quantified peaks but only expert user manage to do this without compromising on the variance (see figure \ref{fig:user}).Each manual peakgroup validation will introduce a human bias which is not reproducible and therefore automated validation is favored (see figure \ref{fig:user}).
+\item[--] Compared to the automated evaluation of peakgroups in Skyline a manual curation usually leads to a higher number of quantified peaks but only expert user manage to do this without compromising on the variance (see Figure \ref{fig:user}).Each manual peakgroup validation will introduce a human bias which is not reproducible and therefore automated validation is favored (see Figure \ref{fig:user}).
 
 \end{itemize}
 
