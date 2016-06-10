@@ -15,4 +15,4 @@ LazyData: true
 VignetteBuilder: knitr
 NeedsCompilation: no
 biocViews: ExperimentData, MassSpectrometryData, ReproducibleResearch
-URL: https://panoramaweb.org/labkey/MSQC1.url
+URL: https://panoramaweb.org/labkey/MSQC1.url, http://fgcz-bfabric.uzh.ch/bfabric/project.html?projectId=1959
