@@ -291,8 +291,66 @@ set and applied with a q-value cut-off of 0.001.
 
 
 
-<<figure3, eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=4.0, height=4.0>>=
-msqc1:::.figure3(data=msqc1_8rep, peptides=peptides)
+<<figure3, eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=5.0, height=5.0>>=
+#msqc1:::.figure3(data=msqc1_8rep, peptides=peptides)
+#R
+x <- msqc1_8rep
+
+x <- x[grepl("[by]", x$Fragment.Ion) & x$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+
+x.sum <- aggregate(Area ~ instrument + Isotope.Label.Type + relative.amount + Peptide.Sequence + File.Name.Id, data=x, FUN=sum)
+
+x.sum.sd <- aggregate(Area ~ instrument + Isotope.Label.Type + Peptide.Sequence,
+                      data=x.sum, FUN=sd)
+x.sum.mean <-  aggregate(Area ~ instrument + Isotope.Label.Type + Peptide.Sequence,
+                         data=x.sum, FUN=mean)
+
+
+S.peptide <- data.frame(sum_sd_area = x.sum.sd$Area,
+        sum_mean_area = x.sum.mean$Area,
+        instrument = x.sum.mean$instrument,
+        type = "peptide level")
+
+
+x <- msqc1_8rep
+
+x <- x[grepl("[by]", x$Fragment.Ion) & x$Peptide.Sequence %in% peptides$Peptide.Sequence, ]
+
+x.sum <- aggregate(Area ~ instrument + Isotope.Label.Type + relative.amount + Peptide.Sequence + File.Name.Id, data=x, FUN=sum)
+
+
+x.light <- x.sum[x.sum$Isotope.Label.Type == "light", ]
+x.heavy <- x.sum[x.sum$Isotope.Label.Type == "heavy", ]
+
+x.merged <- merge(x.heavy, x.light, by=c('instrument', 'Peptide.Sequence', 'File.Name.Id'))
+
+x.merged$log2ratio <- log(x.merged$Area.x, 2) - log(x.merged$Area.y, 2)
+
+x.sum.sd <- aggregate(log2ratio ~ instrument  + Peptide.Sequence,
+                      data=x.merged, FUN=sd)
+x.sum.mean <-  aggregate(log2ratio ~ instrument  + Peptide.Sequence,
+                         data=x.merged, FUN=mean)
+
+S.log2 <- data.frame(sum_sd_area = x.sum.sd$log2ratio,
+        sum_mean_area = x.sum.mean$log2ratio,
+        instrument = x.sum.mean$instrument,
+        type = "log2 L:H ratio level")
+
+
+S <-  do.call('rbind', list(S.peptide, S.log2))
+
+
+
+bwplot(100*(sum_sd_area /  sum_mean_area)  ~ instrument | type, data=S,
+        panel=function(...){
+                      panel.violin(..., fill = NULL, col = NULL, adjust = 1.0, varwidth = FALSE)
+                      panel.bwplot(..., fill = "#AAAAAA88")
+                      panel.abline(h = log(c(5, 10, 20), base = 10), col.line ='grey')
+                      },
+         scales = list(x = list(rot = 45),
+                y = list(log=TRUE, at=100 * c(2.000, 1, 0.5, 0.25, 0.100, 0.050, 0.025, 0.01, 0.001))),
+                ylab = 'coefficient of variation [%]')
+
 @
 
 \begin{figure}[H]
@@ -544,7 +602,7 @@ msqc1:::.supplement_figure7(data=msqc1_dil)
 }
 @
 
-<<figure6,eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=7.0, height=7.0>>=
+<<figure6,eval=TRUE, echo=FALSE, fig=TRUE, include=FALSE, width=5.0, height=5.0>>=
 .figure6(data=msqc1_userstudy, peptides=peptides)
 @
 
