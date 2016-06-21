@@ -101,7 +101,7 @@
 
 \vspace{0.5cm}
 
-\resizebox{.9\textwidth}{!}{\hspace{3.5cm} Tobias Kockmann$^\diamond$, Christian Trachsel$^\diamond$, Christian Panse$^\diamond$, {\AA}sa W{\aa}hlander$^\ddag$, Nathalie Selevsek$^\diamond$, Jonas Grossmann$^\diamond$, Witold E. Wolski$^\diamond$, \underline{Claudia Fortes}$^\diamond$, \underline{Paolo Nanni}$^\diamond$ and Ralph Schlapbach$^\diamond$}\\[1.0cm]
+\resizebox{.9\textwidth}{!}{\hspace{3.5cm} Tobias Kockmann$^\diamond$, Christian Trachsel$^\diamond$, Christian Panse$^\diamond$, {\AA}sa W{\aa}hlander$^\ddag$, Nathalie Selevsek$^\diamond$, Jonas Grossmann$^\diamond$, Witold E. Wolski$^\diamond$, Claudia Fortes$^\diamond$, Paolo Nanni$^\diamond$ and Ralph Schlapbach$^\diamond$}\\[1.0cm]
 }
 
 \end{center}
