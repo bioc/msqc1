@@ -26,8 +26,9 @@ This vignette file is thought to demonstrate the retention time stability of the
 ```{r, echo = FALSE, message = FALSE}
 if (!require(msqc1)){
   ## try http:// if https:// URLs are not supported
-  source("https://bioconductor.org/biocLite.R")
-  biocLite("msqc1")
+  if (!requireNamespace("BiocManager", quietly=TRUE))
+      install.packages("BiocManager")
+  BiocManager::install("msqc1")
 }
 ```
 

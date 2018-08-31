@@ -23,7 +23,8 @@ output:
 ```{r echo = FALSE, message = FALSE}
 if (!require(msqc1)){
   ## try http:// if https:// URLs are not supported
-  source("https://bioconductor.org/biocLite.R")
+  if (!requireNamespace("BiocManager", quietly=TRUE))
+      install.packages("BiocManager")
 }
 ```
 
