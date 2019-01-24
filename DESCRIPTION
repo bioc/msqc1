@@ -1,9 +1,15 @@
 Package: msqc1
 Title: Sigma mix MSQC1 data
-Version: 1.11.0
-Author: Tobias Kockmann, Christian Trachsel, Christian Panse
-Maintainer: Christian Panse <cp@fgcz.ethz.ch>
-Depends: R (>= 3.2), lattice, stats, utils
+Version: 1.11.1
+Authors@R: c(person("Tobias", "Kockmann",
+        role = c("aut")),
+    person("Christian", "Trachsel",
+        role = c("aut")),
+    person("Christian", "Panse",
+        email = "cp@fgcz.ethz.ch",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0003-1975-3064")))
+Depends: R (>= 3.6), lattice, stats, utils
 Suggests: BiocStyle, knitr, testthat, specL
 Description: The data set contains an eight technical replicate data
         set and a three replicate dilution series of the MS Qual/Quant

@@ -5,7 +5,6 @@ package: "`r pkg_ver('specL')`"
 date: "`r Sys.Date()`"
 bibliography:
   - msqc1.bib
-csl: ieee.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{LC Observations - Retention Time Stability}
@@ -38,7 +37,7 @@ if (!require(msqc1)){
 
 ## Solution: Normalization 
 
-The iRT concept [proposed in @pmid22577012] for the RT normalization is used.
+The iRT concept [proposed in pmid22577012 for the RT normalization is used.
 Instead of using the iRT-peptides 
 MSQC1-peptides are used as reference peptides between the different chromatographic settings and systems.
 
