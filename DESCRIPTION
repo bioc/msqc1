@@ -1,6 +1,6 @@
 Package: msqc1
 Title: Sigma mix MSQC1 data
-Version: 1.11.1
+Version: 1.12.0
 Authors@R: c(person("Tobias", "Kockmann",
         role = c("aut")),
     person("Christian", "Trachsel",
