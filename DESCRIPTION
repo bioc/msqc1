@@ -1,6 +1,6 @@
 Package: msqc1
 Title: Sigma mix MSQC1 data
-Version: 1.15.1
+Version: 1.15.2
 Authors@R: c(person("Tobias", "Kockmann",
         role = c("aut"), comment = c(ORCID = "0000-0002-1847-885X")),
     person("Christian", "Trachsel",
@@ -10,11 +10,11 @@ Authors@R: c(person("Tobias", "Kockmann",
         role = c("aut", "cre"),
         comment = c(ORCID = "0000-0003-1975-3064")))
 Depends: R (>= 3.6), lattice, stats, utils
-Suggests: BiocStyle, knitr, testthat, specL
-Description: The data set contains an eight technical replicate data
+Suggests: BiocStyle, knitr, testthat, specL (>= 1.2)
+Description: contains eight technical replicate data
         set and a three replicate dilution series of the MS Qual/Quant
-        QC Mix standard sample (Sigma-Aldrich, Buchs, Switzerland)
-        measured on five different mass spec platforms at the
+        Quality Control Mix standard sample (Sigma-Aldrich, Buchs, Switzerland)
+        measured on five different mass spectrometer platforms at the
         Functional Genomics Center Zurich.
 License: GPL
 LazyData: true
