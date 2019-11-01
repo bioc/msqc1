@@ -163,5 +163,6 @@ legend("bottomright",
 ```{r, cache=FALSE}
 sessionInfo()
 ```
+
 # References
 
