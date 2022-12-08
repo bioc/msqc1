@@ -11,7 +11,7 @@ author:
   email: cp@fgcz.ethz.ch
   affiliation:
     - *fgcz
-    - &sib Swiss Institute of Bioinformatics
+    - &sib Swiss Institute of Bioinformatics, Quartier Sorge - Batiment Amphipole, CH-1015 Lausanne, Switzerland
 - name: Jonas Grossmann
   affiliation:
     - *fgcz
